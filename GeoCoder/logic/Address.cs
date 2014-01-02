@@ -80,7 +80,7 @@ namespace GeoCoder.logic
                     {
                         if (statusIterator.Current.Value != "OK")
                         {
-                            // error
+                            // error, this means google was unable to geo code the address
                             return;
                         }
                     }
