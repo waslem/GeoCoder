@@ -49,11 +49,11 @@
             this.label2 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panelButtons = new System.Windows.Forms.Panel();
             this.dataGridViewAddresses = new System.Windows.Forms.DataGridView();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.panelMain = new System.Windows.Forms.Panel();
             this.lblProgress = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.panelResults = new System.Windows.Forms.Panel();
             this.lblResults = new System.Windows.Forms.Label();
             this.lblGeocoded = new System.Windows.Forms.Label();
             this.lblUngeo = new System.Windows.Forms.Label();
@@ -61,17 +61,19 @@
             this.lblRecordCount = new System.Windows.Forms.Label();
             this.lblGeocdedCount = new System.Windows.Forms.Label();
             this.lblUngeoCount = new System.Windows.Forms.Label();
+            this.panelProgress = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.panelButtons.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAddresses)).BeginInit();
-            this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
+            this.panelMain.SuspendLayout();
+            this.panelResults.SuspendLayout();
+            this.panelProgress.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonExport
             // 
-            this.buttonExport.Location = new System.Drawing.Point(83, 133);
+            this.buttonExport.Location = new System.Drawing.Point(85, 147);
             this.buttonExport.Name = "buttonExport";
             this.buttonExport.Size = new System.Drawing.Size(144, 54);
             this.buttonExport.TabIndex = 2;
@@ -159,7 +161,7 @@
             // 
             // buttonImport
             // 
-            this.buttonImport.Location = new System.Drawing.Point(83, 60);
+            this.buttonImport.Location = new System.Drawing.Point(85, 74);
             this.buttonImport.Name = "buttonImport";
             this.buttonImport.Size = new System.Drawing.Size(144, 54);
             this.buttonImport.TabIndex = 5;
@@ -174,9 +176,9 @@
             // progressExport
             // 
             this.progressExport.Cursor = System.Windows.Forms.Cursors.WaitCursor;
-            this.progressExport.Location = new System.Drawing.Point(14, 473);
+            this.progressExport.Location = new System.Drawing.Point(4, 54);
             this.progressExport.Name = "progressExport";
-            this.progressExport.Size = new System.Drawing.Size(316, 23);
+            this.progressExport.Size = new System.Drawing.Size(306, 23);
             this.progressExport.Step = 4;
             this.progressExport.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressExport.TabIndex = 6;
@@ -184,7 +186,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(83, 133);
+            this.button1.Location = new System.Drawing.Point(85, 147);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(144, 54);
             this.button1.TabIndex = 2;
@@ -205,7 +207,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(83, 60);
+            this.button2.Location = new System.Drawing.Point(85, 74);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(144, 54);
             this.button2.TabIndex = 5;
@@ -223,19 +225,19 @@
             this.pictureBox2.TabIndex = 7;
             this.pictureBox2.TabStop = false;
             // 
-            // panel1
+            // panelButtons
             // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.pictureBox2);
-            this.panel1.Controls.Add(this.buttonExport);
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.buttonImport);
-            this.panel1.Location = new System.Drawing.Point(14, 14);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(316, 224);
-            this.panel1.TabIndex = 8;
+            this.panelButtons.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panelButtons.Controls.Add(this.label2);
+            this.panelButtons.Controls.Add(this.pictureBox2);
+            this.panelButtons.Controls.Add(this.buttonExport);
+            this.panelButtons.Controls.Add(this.button1);
+            this.panelButtons.Controls.Add(this.button2);
+            this.panelButtons.Controls.Add(this.buttonImport);
+            this.panelButtons.Location = new System.Drawing.Point(14, 14);
+            this.panelButtons.Name = "panelButtons";
+            this.panelButtons.Size = new System.Drawing.Size(316, 224);
+            this.panelButtons.TabIndex = 8;
             // 
             // dataGridViewAddresses
             // 
@@ -250,49 +252,48 @@
             this.dataGridViewAddresses.TabIndex = 9;
             this.dataGridViewAddresses.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridViewAddresses_CellFormatting);
             // 
-            // panel2
+            // panelMain
             // 
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.panel3);
-            this.panel2.Controls.Add(this.lblProgress);
-            this.panel2.Controls.Add(this.dataGridViewAddresses);
-            this.panel2.Controls.Add(this.panel1);
-            this.panel2.Controls.Add(this.progressExport);
-            this.panel2.Location = new System.Drawing.Point(12, 38);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(937, 513);
-            this.panel2.TabIndex = 10;
+            this.panelMain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelMain.Controls.Add(this.panelProgress);
+            this.panelMain.Controls.Add(this.panelResults);
+            this.panelMain.Controls.Add(this.dataGridViewAddresses);
+            this.panelMain.Controls.Add(this.panelButtons);
+            this.panelMain.Location = new System.Drawing.Point(12, 38);
+            this.panelMain.Name = "panelMain";
+            this.panelMain.Size = new System.Drawing.Size(937, 513);
+            this.panelMain.TabIndex = 10;
             // 
             // lblProgress
             // 
             this.lblProgress.AutoSize = true;
             this.lblProgress.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProgress.Location = new System.Drawing.Point(115, 446);
+            this.lblProgress.Location = new System.Drawing.Point(98, 19);
             this.lblProgress.Name = "lblProgress";
             this.lblProgress.Size = new System.Drawing.Size(111, 24);
             this.lblProgress.TabIndex = 10;
             this.lblProgress.Text = "Progress...";
             // 
-            // panel3
+            // panelResults
             // 
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel3.Controls.Add(this.lblUngeoCount);
-            this.panel3.Controls.Add(this.lblGeocdedCount);
-            this.panel3.Controls.Add(this.lblRecordCount);
-            this.panel3.Controls.Add(this.lblRecords);
-            this.panel3.Controls.Add(this.lblUngeo);
-            this.panel3.Controls.Add(this.lblGeocoded);
-            this.panel3.Controls.Add(this.lblResults);
-            this.panel3.Location = new System.Drawing.Point(14, 255);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(316, 128);
-            this.panel3.TabIndex = 11;
+            this.panelResults.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panelResults.Controls.Add(this.lblUngeoCount);
+            this.panelResults.Controls.Add(this.lblGeocdedCount);
+            this.panelResults.Controls.Add(this.lblRecordCount);
+            this.panelResults.Controls.Add(this.lblRecords);
+            this.panelResults.Controls.Add(this.lblUngeo);
+            this.panelResults.Controls.Add(this.lblGeocoded);
+            this.panelResults.Controls.Add(this.lblResults);
+            this.panelResults.Location = new System.Drawing.Point(14, 255);
+            this.panelResults.Name = "panelResults";
+            this.panelResults.Size = new System.Drawing.Size(316, 128);
+            this.panelResults.TabIndex = 11;
             // 
             // lblResults
             // 
             this.lblResults.AutoSize = true;
             this.lblResults.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblResults.Location = new System.Drawing.Point(115, 14);
+            this.lblResults.Location = new System.Drawing.Point(116, 13);
             this.lblResults.Name = "lblResults";
             this.lblResults.Size = new System.Drawing.Size(70, 20);
             this.lblResults.TabIndex = 0;
@@ -354,12 +355,22 @@
             this.lblUngeoCount.Size = new System.Drawing.Size(0, 13);
             this.lblUngeoCount.TabIndex = 6;
             // 
+            // panelProgress
+            // 
+            this.panelProgress.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panelProgress.Controls.Add(this.progressExport);
+            this.panelProgress.Controls.Add(this.lblProgress);
+            this.panelProgress.Location = new System.Drawing.Point(14, 401);
+            this.panelProgress.Name = "panelProgress";
+            this.panelProgress.Size = new System.Drawing.Size(316, 95);
+            this.panelProgress.TabIndex = 12;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(961, 563);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panelMain);
             this.Controls.Add(this.menuStrip1);
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -371,13 +382,14 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.panelButtons.ResumeLayout(false);
+            this.panelButtons.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAddresses)).EndInit();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
+            this.panelMain.ResumeLayout(false);
+            this.panelResults.ResumeLayout(false);
+            this.panelResults.PerformLayout();
+            this.panelProgress.ResumeLayout(false);
+            this.panelProgress.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -405,11 +417,11 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panelButtons;
         private System.Windows.Forms.DataGridView dataGridViewAddresses;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panelMain;
         private System.Windows.Forms.Label lblProgress;
-        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panelResults;
         private System.Windows.Forms.Label lblUngeoCount;
         private System.Windows.Forms.Label lblGeocdedCount;
         private System.Windows.Forms.Label lblRecordCount;
@@ -417,6 +429,7 @@
         private System.Windows.Forms.Label lblUngeo;
         private System.Windows.Forms.Label lblGeocoded;
         private System.Windows.Forms.Label lblResults;
+        private System.Windows.Forms.Panel panelProgress;
     }
 }
 
