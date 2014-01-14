@@ -6,6 +6,10 @@ using System.Windows.Forms;
 using System.IO;
 using ComLib.CsvParse;
 using GeoCoder.logic;
+using System.Threading;
+using System.ComponentModel;
+using System.Drawing;
+using System.Diagnostics;
 
 namespace GeoCoder
 {
@@ -24,8 +28,10 @@ namespace GeoCoder
         private void Form1_Load(object sender, EventArgs e)
         {
             _ungeoList = new List<Address>();
-            
-            progressExport.Visible = false;
+
+            dataGridViewAddresses.Visible = false;
+
+            HideProgress();
         }
 
         // default open
@@ -66,26 +72,49 @@ namespace GeoCoder
 
         private void buttonExport_Click(object sender, EventArgs e)
         {
+
             // set cursor to wait cursor.
             Cursor.Current = Cursors.WaitCursor;
+
+            // set the label and progress bar to visible
+            DisplayProgress();
+
+            // use this to force the application to repaint the form directly after the
+            // label and progress bar are set to visible
+            // see http://msdn.microsoft.com/en-us/library/system.windows.forms.application.doevents%28v=vs.110%29.aspx
+            //      "if you remove DoEvents from your code, your form will not repaint until 
+            //      the click event handler of the button is finished executing."
+            Application.DoEvents();
 
             // geocode/sort and export all addresses in ungeoList
             Geocode();
             SortResults();
             ExportResults();
 
+            dataGridViewAddresses.DataSource = _ungeoList;
+
             // set progress bar invisible again and cursor back to default
             Cursor.Current = Cursors.Default;
-            progressExport.Visible = false;
+
+            HideProgress();
         }
 
-        private void Geocode()
+        private void DisplayProgress()
         {
             progressExport.Visible = true;
-
+            lblProgress.Visible = true;
+        }
+        private void HideProgress()
+        {
+            progressExport.Visible = false;
+            lblProgress.Visible = false;
+        }
+        private void Geocode()
+        {
             foreach (var a in _ungeoList)
             {
                 a.Geocode();
+                
                 // progress bar steps
                 progressExport.PerformStep();
             }
@@ -112,6 +141,11 @@ namespace GeoCoder
             catch (Exception)
             {
                 throw;
+            }
+            finally
+            {
+                dataGridViewAddresses.Show();
+                dataGridViewAddresses.DataSource = _ungeoList;
             }
         }
 
@@ -156,6 +190,22 @@ namespace GeoCoder
         {
             AboutForm form = new AboutForm();
             form.ShowDialog();
+        }
+
+        private void dataGridViewAddresses_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            // column 2 = "X" column, column 3 = "Y" column
+           if (e.ColumnIndex == 2 || e.ColumnIndex == 3)
+           {  
+               if (e.Value.ToString() != "0")
+               {
+                   e.CellStyle.BackColor = Color.LightGreen; 
+               }
+               else
+               {
+                   e.CellStyle.BackColor = Color.LightPink;
+               }
+           }
         }
     }
 }

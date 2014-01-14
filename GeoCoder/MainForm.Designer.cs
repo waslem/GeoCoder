@@ -41,7 +41,6 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileLoad = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialogCsv = new System.Windows.Forms.SaveFileDialog();
-            this.label1 = new System.Windows.Forms.Label();
             this.buttonImport = new System.Windows.Forms.Button();
             this.folderBrowserDefaultSave = new System.Windows.Forms.FolderBrowserDialog();
             this.folderBrowserDefaultOpen = new System.Windows.Forms.FolderBrowserDialog();
@@ -50,13 +49,20 @@
             this.label2 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.dataGridViewAddresses = new System.Windows.Forms.DataGridView();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.lblProgress = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAddresses)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonExport
             // 
-            this.buttonExport.Location = new System.Drawing.Point(58, 131);
+            this.buttonExport.Location = new System.Drawing.Point(83, 133);
             this.buttonExport.Name = "buttonExport";
             this.buttonExport.Size = new System.Drawing.Size(144, 54);
             this.buttonExport.TabIndex = 2;
@@ -71,7 +77,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(251, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(961, 24);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -134,7 +140,7 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.aboutToolStripMenuItem.Text = "&About...";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -142,20 +148,9 @@
             // 
             this.openFileLoad.FileName = "openFileLoad";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.CausesValidation = false;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(40, 35);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(182, 20);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "BBPO CSV Geocoder";
-            // 
             // buttonImport
             // 
-            this.buttonImport.Location = new System.Drawing.Point(58, 58);
+            this.buttonImport.Location = new System.Drawing.Point(83, 60);
             this.buttonImport.Name = "buttonImport";
             this.buttonImport.Size = new System.Drawing.Size(144, 54);
             this.buttonImport.TabIndex = 5;
@@ -170,9 +165,9 @@
             // progressExport
             // 
             this.progressExport.Cursor = System.Windows.Forms.Cursors.WaitCursor;
-            this.progressExport.Location = new System.Drawing.Point(0, 203);
+            this.progressExport.Location = new System.Drawing.Point(14, 473);
             this.progressExport.Name = "progressExport";
-            this.progressExport.Size = new System.Drawing.Size(251, 23);
+            this.progressExport.Size = new System.Drawing.Size(316, 23);
             this.progressExport.Step = 4;
             this.progressExport.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressExport.TabIndex = 6;
@@ -180,7 +175,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(58, 131);
+            this.button1.Location = new System.Drawing.Point(83, 133);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(144, 54);
             this.button1.TabIndex = 2;
@@ -193,7 +188,7 @@
             this.label2.AutoSize = true;
             this.label2.CausesValidation = false;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(37, 28);
+            this.label2.Location = new System.Drawing.Point(65, 27);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(211, 24);
             this.label2.TabIndex = 4;
@@ -201,7 +196,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(58, 58);
+            this.button2.Location = new System.Drawing.Point(83, 60);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(144, 54);
             this.button2.TabIndex = 5;
@@ -213,25 +208,67 @@
             // 
             this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.Location = new System.Drawing.Point(12, 25);
+            this.pictureBox2.Location = new System.Drawing.Point(37, 27);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(27, 30);
+            this.pictureBox2.Size = new System.Drawing.Size(27, 38);
             this.pictureBox2.TabIndex = 7;
             this.pictureBox2.TabStop = false;
+            // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.pictureBox2);
+            this.panel1.Controls.Add(this.buttonExport);
+            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.buttonImport);
+            this.panel1.Location = new System.Drawing.Point(14, 14);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(316, 224);
+            this.panel1.TabIndex = 8;
+            // 
+            // dataGridViewAddresses
+            // 
+            this.dataGridViewAddresses.AllowUserToAddRows = false;
+            this.dataGridViewAddresses.AllowUserToDeleteRows = false;
+            this.dataGridViewAddresses.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridViewAddresses.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dataGridViewAddresses.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewAddresses.Location = new System.Drawing.Point(350, 14);
+            this.dataGridViewAddresses.Name = "dataGridViewAddresses";
+            this.dataGridViewAddresses.Size = new System.Drawing.Size(571, 482);
+            this.dataGridViewAddresses.TabIndex = 9;
+            this.dataGridViewAddresses.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridViewAddresses_CellFormatting);
+            // 
+            // panel2
+            // 
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.lblProgress);
+            this.panel2.Controls.Add(this.dataGridViewAddresses);
+            this.panel2.Controls.Add(this.panel1);
+            this.panel2.Controls.Add(this.progressExport);
+            this.panel2.Location = new System.Drawing.Point(12, 38);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(937, 513);
+            this.panel2.TabIndex = 10;
+            // 
+            // lblProgress
+            // 
+            this.lblProgress.AutoSize = true;
+            this.lblProgress.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProgress.Location = new System.Drawing.Point(115, 446);
+            this.lblProgress.Name = "lblProgress";
+            this.lblProgress.Size = new System.Drawing.Size(93, 24);
+            this.lblProgress.TabIndex = 10;
+            this.lblProgress.Text = "Progress";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(251, 227);
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.progressExport);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.buttonImport);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.buttonExport);
+            this.ClientSize = new System.Drawing.Size(961, 563);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.menuStrip1);
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -243,6 +280,11 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAddresses)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -260,7 +302,6 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openFileLoad;
         private System.Windows.Forms.SaveFileDialog saveFileDialogCsv;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonImport;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuDefaultOpen;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDefaultSave;
@@ -271,6 +312,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.DataGridView dataGridViewAddresses;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label lblProgress;
     }
 }
 
