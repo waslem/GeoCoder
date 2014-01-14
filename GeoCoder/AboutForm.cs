@@ -17,17 +17,12 @@ namespace GeoCoder
             InitializeComponent();
         }
 
-        private void label9_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void AboutForm_Load(object sender, EventArgs e)
         {
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnClose_Click(object sender, EventArgs e)
         {
             Close();
         }
