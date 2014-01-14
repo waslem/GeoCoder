@@ -134,8 +134,9 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.aboutToolStripMenuItem.Text = "&About...";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // openFileLoad
             // 
@@ -151,7 +152,6 @@
             this.label1.Size = new System.Drawing.Size(182, 20);
             this.label1.TabIndex = 4;
             this.label1.Text = "BBPO CSV Geocoder";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // buttonImport
             // 
@@ -198,7 +198,6 @@
             this.label2.Size = new System.Drawing.Size(211, 24);
             this.label2.TabIndex = 4;
             this.label2.Text = "BBPO CSV Geocoder";
-            this.label2.Click += new System.EventHandler(this.label1_Click);
             // 
             // button2
             // 

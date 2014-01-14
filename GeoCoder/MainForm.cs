@@ -13,8 +13,8 @@ namespace GeoCoder
     {
         private List<Address> _ungeoList = null;
 
-        private string _defaultSave = "c:\\";
-        private string _defaultOpen = "c:\\";
+        private string _defaultSave = "K:\\";
+        private string _defaultOpen = "C:\\X-Y Files\\";
 
         public MainForm()
         {
@@ -31,7 +31,6 @@ namespace GeoCoder
         // default open
         private void toolStripMenuDefaultOpen_Click(object sender, EventArgs e)
         {
-
             if (folderBrowserDefaultSave.ShowDialog() == DialogResult.OK)
             {
                 _defaultSave = folderBrowserDefaultSave.SelectedPath;
@@ -153,9 +152,10 @@ namespace GeoCoder
                                 .ToList();
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            AboutForm form = new AboutForm();
+            form.ShowDialog();
         }
     }
 }
