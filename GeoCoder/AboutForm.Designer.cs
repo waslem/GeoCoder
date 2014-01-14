@@ -147,12 +147,11 @@
             // 
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Items.AddRange(new object[] {
-            "Add GUI for records imported",
             "Reconfigure order of csv export to allow a more seamless data import",
-            "Add more thorough error checking (csv format)"});
+            "Specifically remove column B when saving, add new blank column DriverName"});
             this.listBox1.Location = new System.Drawing.Point(44, 212);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(402, 56);
+            this.listBox1.Size = new System.Drawing.Size(402, 43);
             this.listBox1.TabIndex = 10;
             // 
             // label9
