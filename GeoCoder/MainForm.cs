@@ -16,6 +16,7 @@ namespace GeoCoder
     public partial class MainForm : Form
     {
         private List<Address> _ungeoList = null;
+        private ResultStats _resultStats;
 
         private string _defaultSave = "K:\\";
         private string _defaultOpen = "C:\\X-Y Files\\";
@@ -28,7 +29,7 @@ namespace GeoCoder
         private void Form1_Load(object sender, EventArgs e)
         {
             _ungeoList = new List<Address>();
-
+            _resultStats = new ResultStats();
             dataGridViewAddresses.Visible = false;
 
             HideProgress();
@@ -67,7 +68,14 @@ namespace GeoCoder
         // open csv from button
         private void buttonImport_Click(object sender, EventArgs e)
         {
+            ResetAddressAndResults();
             OpenCsv();
+        }
+
+        private void ResetAddressAndResults()
+        {
+            this._ungeoList.Clear();
+            this._resultStats.Reset();
         }
 
         private void buttonExport_Click(object sender, EventArgs e)
@@ -97,6 +105,33 @@ namespace GeoCoder
             Cursor.Current = Cursors.Default;
 
             HideProgress();
+            CalculateResults();
+            UpdateResultsPanel();
+        }
+
+        private void UpdateResultsPanel()
+        {
+            this.lblRecordCount.Text = this._resultStats.RecordCount.ToString();
+            this.lblGeocdedCount.Text = this._resultStats.GeocodedCount.ToString();
+            this.lblUngeoCount.Text = this._resultStats.UngeocodedCount.ToString();
+        }
+
+        private void CalculateResults()
+        {
+            this._resultStats.RecordCount = _ungeoList.Count;
+
+            int i = 0;
+
+            foreach (var address in _ungeoList)
+            {
+                if (address.X > 0)
+                {
+                    i++;
+                }
+            }
+
+            this._resultStats.GeocodedCount = i;
+            this._resultStats.UngeocodedCount = this._resultStats.RecordCount - i;
         }
 
         private void DisplayProgress()
@@ -111,6 +146,7 @@ namespace GeoCoder
         }
         private void Geocode()
         {
+            
             foreach (var a in _ungeoList)
             {
                 a.Geocode();

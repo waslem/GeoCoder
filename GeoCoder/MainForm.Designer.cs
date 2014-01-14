@@ -53,11 +53,20 @@
             this.dataGridViewAddresses = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblProgress = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.lblResults = new System.Windows.Forms.Label();
+            this.lblGeocoded = new System.Windows.Forms.Label();
+            this.lblUngeo = new System.Windows.Forms.Label();
+            this.lblRecords = new System.Windows.Forms.Label();
+            this.lblRecordCount = new System.Windows.Forms.Label();
+            this.lblGeocdedCount = new System.Windows.Forms.Label();
+            this.lblUngeoCount = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAddresses)).BeginInit();
             this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonExport
@@ -244,6 +253,7 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.panel3);
             this.panel2.Controls.Add(this.lblProgress);
             this.panel2.Controls.Add(this.dataGridViewAddresses);
             this.panel2.Controls.Add(this.panel1);
@@ -262,6 +272,82 @@
             this.lblProgress.Size = new System.Drawing.Size(93, 24);
             this.lblProgress.TabIndex = 10;
             this.lblProgress.Text = "Progress";
+            // 
+            // panel3
+            // 
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel3.Controls.Add(this.lblUngeoCount);
+            this.panel3.Controls.Add(this.lblGeocdedCount);
+            this.panel3.Controls.Add(this.lblRecordCount);
+            this.panel3.Controls.Add(this.lblRecords);
+            this.panel3.Controls.Add(this.lblUngeo);
+            this.panel3.Controls.Add(this.lblGeocoded);
+            this.panel3.Controls.Add(this.lblResults);
+            this.panel3.Location = new System.Drawing.Point(14, 255);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(316, 128);
+            this.panel3.TabIndex = 11;
+            // 
+            // lblResults
+            // 
+            this.lblResults.AutoSize = true;
+            this.lblResults.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblResults.Location = new System.Drawing.Point(115, 14);
+            this.lblResults.Name = "lblResults";
+            this.lblResults.Size = new System.Drawing.Size(70, 20);
+            this.lblResults.TabIndex = 0;
+            this.lblResults.Text = "Results";
+            // 
+            // lblGeocoded
+            // 
+            this.lblGeocoded.AutoSize = true;
+            this.lblGeocoded.Location = new System.Drawing.Point(82, 69);
+            this.lblGeocoded.Name = "lblGeocoded";
+            this.lblGeocoded.Size = new System.Drawing.Size(63, 13);
+            this.lblGeocoded.TabIndex = 1;
+            this.lblGeocoded.Text = "Geocoded: ";
+            // 
+            // lblUngeo
+            // 
+            this.lblUngeo.AutoSize = true;
+            this.lblUngeo.Location = new System.Drawing.Point(70, 93);
+            this.lblUngeo.Name = "lblUngeo";
+            this.lblUngeo.Size = new System.Drawing.Size(75, 13);
+            this.lblUngeo.TabIndex = 2;
+            this.lblUngeo.Text = "Ungeocoded: ";
+            // 
+            // lblRecords
+            // 
+            this.lblRecords.AutoSize = true;
+            this.lblRecords.Location = new System.Drawing.Point(66, 47);
+            this.lblRecords.Name = "lblRecords";
+            this.lblRecords.Size = new System.Drawing.Size(77, 13);
+            this.lblRecords.TabIndex = 3;
+            this.lblRecords.Text = "Total Records:";
+            // 
+            // lblRecordCount
+            // 
+            this.lblRecordCount.AutoSize = true;
+            this.lblRecordCount.Location = new System.Drawing.Point(151, 47);
+            this.lblRecordCount.Name = "lblRecordCount";
+            this.lblRecordCount.Size = new System.Drawing.Size(0, 13);
+            this.lblRecordCount.TabIndex = 4;
+            // 
+            // lblGeocdedCount
+            // 
+            this.lblGeocdedCount.AutoSize = true;
+            this.lblGeocdedCount.Location = new System.Drawing.Point(151, 69);
+            this.lblGeocdedCount.Name = "lblGeocdedCount";
+            this.lblGeocdedCount.Size = new System.Drawing.Size(0, 13);
+            this.lblGeocdedCount.TabIndex = 5;
+            // 
+            // lblUngeoCount
+            // 
+            this.lblUngeoCount.AutoSize = true;
+            this.lblUngeoCount.Location = new System.Drawing.Point(151, 93);
+            this.lblUngeoCount.Name = "lblUngeoCount";
+            this.lblUngeoCount.Size = new System.Drawing.Size(0, 13);
+            this.lblUngeoCount.TabIndex = 6;
             // 
             // MainForm
             // 
@@ -285,6 +371,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAddresses)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -316,6 +404,14 @@
         private System.Windows.Forms.DataGridView dataGridViewAddresses;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label lblProgress;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label lblUngeoCount;
+        private System.Windows.Forms.Label lblGeocdedCount;
+        private System.Windows.Forms.Label lblRecordCount;
+        private System.Windows.Forms.Label lblRecords;
+        private System.Windows.Forms.Label lblUngeo;
+        private System.Windows.Forms.Label lblGeocoded;
+        private System.Windows.Forms.Label lblResults;
     }
 }
 
