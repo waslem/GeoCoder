@@ -269,9 +269,9 @@
             this.lblProgress.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblProgress.Location = new System.Drawing.Point(115, 446);
             this.lblProgress.Name = "lblProgress";
-            this.lblProgress.Size = new System.Drawing.Size(93, 24);
+            this.lblProgress.Size = new System.Drawing.Size(111, 24);
             this.lblProgress.TabIndex = 10;
-            this.lblProgress.Text = "Progress";
+            this.lblProgress.Text = "Progress...";
             // 
             // panel3
             // 
@@ -328,6 +328,7 @@
             // lblRecordCount
             // 
             this.lblRecordCount.AutoSize = true;
+            this.lblRecordCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRecordCount.Location = new System.Drawing.Point(151, 47);
             this.lblRecordCount.Name = "lblRecordCount";
             this.lblRecordCount.Size = new System.Drawing.Size(0, 13);
@@ -336,6 +337,8 @@
             // lblGeocdedCount
             // 
             this.lblGeocdedCount.AutoSize = true;
+            this.lblGeocdedCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGeocdedCount.ForeColor = System.Drawing.Color.ForestGreen;
             this.lblGeocdedCount.Location = new System.Drawing.Point(151, 69);
             this.lblGeocdedCount.Name = "lblGeocdedCount";
             this.lblGeocdedCount.Size = new System.Drawing.Size(0, 13);
@@ -344,6 +347,8 @@
             // lblUngeoCount
             // 
             this.lblUngeoCount.AutoSize = true;
+            this.lblUngeoCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUngeoCount.ForeColor = System.Drawing.Color.DarkRed;
             this.lblUngeoCount.Location = new System.Drawing.Point(151, 93);
             this.lblUngeoCount.Name = "lblUngeoCount";
             this.lblUngeoCount.Size = new System.Drawing.Size(0, 13);
