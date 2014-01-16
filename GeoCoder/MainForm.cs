@@ -139,11 +139,13 @@ namespace GeoCoder
             progressExport.Visible = true;
             lblProgress.Visible = true;
         }
+
         private void HideProgress()
         {
             progressExport.Visible = false;
             lblProgress.Visible = false;
         }
+
         private void Geocode()
         {
             
@@ -176,7 +178,7 @@ namespace GeoCoder
             }
             catch (Exception)
             {
-                throw;
+                MessageBox.Show(@"An unexpected error has occured.");
             }
             finally
             {
@@ -242,6 +244,16 @@ namespace GeoCoder
                    e.CellStyle.BackColor = Color.LightPink;
                }
            }
+        }
+
+        // paint event on the panel, set the color of the panel border to light gray.
+        private void panelMain_Paint(object sender, PaintEventArgs e)
+        {
+            using (Pen p = new Pen(Color.LightGray,1))
+            {
+                e.Graphics.DrawRectangle(p, new Rectangle(1, 1, panelMain.ClientSize.Width - 2,
+                                                                panelMain.ClientSize.Height - 2));
+            }
         }
     }
 }

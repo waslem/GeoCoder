@@ -66,20 +66,32 @@ namespace GeoCoder.logic
         //get the csv value for field.
         private string MakeValueCsvFriendly(object value)
         {
-            if (value == null) return "";
-            if (value is Nullable && ((INullable)value).IsNull) return "";
+            if (value == null)
+            {
+                return "";
+            }
+
+            if (value is Nullable && ((INullable)value).IsNull)
+            {
+                return "";
+            }
 
             if (value is DateTime)
             {
                 if (((DateTime)value).TimeOfDay.TotalSeconds == 0)
+                {
                     return ((DateTime)value).ToString("yyyy-MM-dd");
+                }   
                 return ((DateTime)value).ToString("yyyy-MM-dd HH:mm:ss");
             }
+
             string output = value.ToString();
 
             if (output.Contains(",") || output.Contains("\""))
+            {
                 output = '"' + output.Replace("\"", "\"\"") + '"';
-
+            }
+                
             return output;
         }
     }
