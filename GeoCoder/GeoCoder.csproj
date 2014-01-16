@@ -60,7 +60,7 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>rsz_backofficelogomedium.ico</ApplicationIcon>
+    <ApplicationIcon>rsz_backofficelogomediumGeo%281%29.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CommonLibrary">
@@ -144,6 +144,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="rsz_backofficelogomedium.ico" />
+    <Content Include="rsz_backofficelogomediumGeo%281%29.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
