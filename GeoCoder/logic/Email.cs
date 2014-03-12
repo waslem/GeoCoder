@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace GeoCoder.logic
 {
-    public class Email
+    public static class Email
     {
         public static bool Send(string toAddress, List<Address> _ungeoList)
         {
