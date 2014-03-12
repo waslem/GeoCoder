@@ -88,7 +88,7 @@
             this.helpToolStripMenuItem});
             this.menuStripMain.Location = new System.Drawing.Point(0, 0);
             this.menuStripMain.Name = "menuStripMain";
-            this.menuStripMain.Size = new System.Drawing.Size(961, 24);
+            this.menuStripMain.Size = new System.Drawing.Size(1023, 24);
             this.menuStripMain.TabIndex = 3;
             this.menuStripMain.Text = "menuStrip1";
             // 
@@ -248,7 +248,7 @@
             this.dataGridViewAddresses.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewAddresses.Location = new System.Drawing.Point(350, 14);
             this.dataGridViewAddresses.Name = "dataGridViewAddresses";
-            this.dataGridViewAddresses.Size = new System.Drawing.Size(571, 482);
+            this.dataGridViewAddresses.Size = new System.Drawing.Size(631, 482);
             this.dataGridViewAddresses.TabIndex = 9;
             this.dataGridViewAddresses.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridViewAddresses_CellFormatting);
             // 
@@ -260,7 +260,7 @@
             this.panelMain.Controls.Add(this.panelButtons);
             this.panelMain.Location = new System.Drawing.Point(12, 38);
             this.panelMain.Name = "panelMain";
-            this.panelMain.Size = new System.Drawing.Size(937, 513);
+            this.panelMain.Size = new System.Drawing.Size(999, 513);
             this.panelMain.TabIndex = 10;
             this.panelMain.Paint += new System.Windows.Forms.PaintEventHandler(this.panelMain_Paint);
             // 
@@ -369,7 +369,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(961, 563);
+            this.ClientSize = new System.Drawing.Size(1023, 563);
             this.Controls.Add(this.panelMain);
             this.Controls.Add(this.menuStripMain);
             this.Cursor = System.Windows.Forms.Cursors.Default;

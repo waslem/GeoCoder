@@ -94,9 +94,10 @@ namespace GeoCoder
             //      the click event handler of the button is finished executing."
             Application.DoEvents();
 
-            // geocode/sort and export all addresses in ungeoList
+            // geocode/sort/email and export all addresses in ungeoList
             Geocode();
             SortResults();
+            EmailUngeo();
             ExportResults();
 
             dataGridViewAddresses.DataSource = _ungeoList;
@@ -107,6 +108,25 @@ namespace GeoCoder
             HideProgress();
             CalculateResults();
             UpdateResultsPanel();
+        }
+
+        private void EmailUngeo()
+        {
+            // refine the list to the ungeo 
+            List<Address> _ungeoListLeft = _ungeoList
+                            .Where(u => u.X == 0.0)
+                            .Where(u => u.Y == 0.0)
+                            .ToList();
+
+            if (Email.Send("info@backofficebpo.com.au", _ungeoListLeft))
+            {
+                MessageBox.Show("Email with ungeocoded records sent!");
+            }
+            else 
+            {
+                MessageBox.Show("Error with sending email");
+            }
+
         }
 
         private void UpdateResultsPanel()
@@ -211,7 +231,19 @@ namespace GeoCoder
             {
                 //CsvExported generic class, exports a group of any type of objects to csv, in this case we export our list of address objects
                 var export = new CsvExport<Address>(_ungeoList);
-                export.ExportToFile(saveFileDialogCsv.FileName);
+
+                try
+                {
+                    export.ExportToFile(saveFileDialogCsv.FileName);
+                }
+                catch (IOException)
+                {
+                    MessageBox.Show("The file you are attempting to save to is currently in use by another process, please try again.");
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error");
+                }
             }
         }
 
