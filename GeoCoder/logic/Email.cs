@@ -51,8 +51,7 @@ namespace GeoCoder.logic
             message.From = new MailAddress("schedulerbbpo@gmail.com");
             message.To.Add(new MailAddress(toAddress));
 
-            message.Subject = "TESTING PLEASE IGNORE - ";
-            message.Subject += "Ungeocoded - " + DateTime.Today.ToShortDateString();
+            message.Subject = "Ungeocoded - " + DateTime.Today.ToShortDateString();
 
             message.Body = CreateMessageBodyString(_ungeoList);
 
