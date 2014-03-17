@@ -79,7 +79,7 @@ namespace GeoCoder
             if (GeoCoderHelpers.EmailUngeo(_ungeoList))
                 MessageBox.Show("Email with ungeocoded records sent!");
             else
-                MessageBox.Show("Error sending email! ");
+                MessageBox.Show(Properties.Settings.Default.UnexpectedErrorMessage);
 
             ExportResults();
             dataGridViewAddresses.DataSource = _ungeoList;
@@ -129,12 +129,12 @@ namespace GeoCoder
             }
             catch (IOException)
             {
-                MessageBox.Show(@"The file you are trying to access is currently open by another process, please close it and try again.");
+                MessageBox.Show(Properties.Settings.Default.FileInUseMessage);
                 _ungeoList = new List<Address>();
             }
             catch (Exception)
             {
-                MessageBox.Show(@"An unexpected error has occured.");
+                MessageBox.Show(Properties.Settings.Default.UnexpectedErrorMessage);
                 _ungeoList = new List<Address>();
             }
             finally
@@ -178,11 +178,11 @@ namespace GeoCoder
                 }
                 catch (IOException)
                 {
-                    MessageBox.Show("The file you are attempting to save to is currently in use by another process, please try again.");
+                    MessageBox.Show(Properties.Settings.Default.FileInUseMessage);
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("Error");
+                    MessageBox.Show(Properties.Settings.Default.UnexpectedErrorMessage);
                 }
             }
         }

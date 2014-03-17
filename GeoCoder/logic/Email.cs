@@ -97,12 +97,15 @@ namespace GeoCoder.logic
         {
             SmtpClient client = new SmtpClient();
 
-            client.Port = 587;
-            client.Host = "smtp.gmail.com";
+            client.Port = Properties.Settings.Default.EmailPort;
+            client.Host = Properties.Settings.Default.EmailHost;
+
             client.EnableSsl = true;
             client.UseDefaultCredentials = false;
 
-            client.Credentials = new NetworkCredential("schedulerbbpo@gmail.com", "Schedule24");
+            client.Credentials = new NetworkCredential
+                (Properties.Settings.Default.EmailUsername, Properties.Settings.Default.EmailPassword);
+
             client.DeliveryMethod = SmtpDeliveryMethod.Network;
 
             return client;
