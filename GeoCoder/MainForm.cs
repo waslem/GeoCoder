@@ -170,7 +170,7 @@ namespace GeoCoder
             ResetAddressAndResults();
 
             openFileLoad.InitialDirectory = Properties.Settings.Default.DefaultOpen;
-            openFileLoad.Filter = @"csv files (*.csv)| *.csv";
+            openFileLoad.Filter = Properties.Settings.Default.CsvFilter;
 
             DialogResult result = openFileLoad.ShowDialog();
 
@@ -183,7 +183,7 @@ namespace GeoCoder
         private void ExportResults()
         {
             saveFileDialogCsv.InitialDirectory = Properties.Settings.Default.DefaultSave;
-            saveFileDialogCsv.Filter = @"csv files (*.csv)| *.csv";
+            saveFileDialogCsv.Filter = Properties.Settings.Default.CsvFilter;
 
             DialogResult result = saveFileDialogCsv.ShowDialog();
 

@@ -46,5 +46,17 @@ namespace GeoCoder.Properties {
                 this["DefaultOpen"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("csv files (*.csv)| *.csv")]
+        public string CsvFilter {
+            get {
+                return ((string)(this["CsvFilter"]));
+            }
+            set {
+                this["CsvFilter"] = value;
+            }
+        }
     }
 }
