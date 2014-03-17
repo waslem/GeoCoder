@@ -35,6 +35,7 @@ namespace GeoCoder.logic
                 {
                     sb.Append(propertyInfo.Name).Append(",");
                 }
+
                 sb.Remove(sb.Length - 1, 1).AppendLine();
             }
 
@@ -45,6 +46,7 @@ namespace GeoCoder.logic
                 {
                     sb.Append(MakeValueCsvFriendly(propertyInfo.GetValue(obj, null))).Append(",");
                 }
+
                 sb.Remove(sb.Length - 1, 1).AppendLine();
             }
 

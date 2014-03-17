@@ -58,6 +58,5 @@ namespace GeoCoder.logic
             _xCoord = 0.0;
             _yCoord = 0.0;
         }
-
     }
 }

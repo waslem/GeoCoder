@@ -36,33 +36,26 @@ namespace GeoCoder
         private void toolStripMenuDefaultOpen_Click(object sender, EventArgs e)
         {
             if (folderBrowserDefaultSave.ShowDialog() == DialogResult.OK)
-            {
                 Properties.Settings.Default.DefaultSave = folderBrowserDefaultSave.SelectedPath;
-            }
         }
 
         // default close
         private void toolStripMenuDefaultSave_Click(object sender, EventArgs e)
         {
             if (folderBrowserDefaultOpen.ShowDialog() == DialogResult.OK)
-            {
                 Properties.Settings.Default.DefaultOpen = folderBrowserDefaultOpen.SelectedPath;
-            }
         }
 
-        // exit
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-        // open csv from open in menu
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenCsv();
         }
 
-        // open csv from button
         private void buttonImport_Click(object sender, EventArgs e)
         {
             ResetAddressAndResults();
@@ -78,15 +71,12 @@ namespace GeoCoder
         private void buttonExport_Click(object sender, EventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;
-
             DisplayProgress();
 
             // use this to force the application to repaint the form directly after the
             // label and progress bar are set to visible
             Application.DoEvents();
-
             Geocode();
-
             _ungeoList = GeoCoderHelpers.SortResults(_ungeoList);
 
             if (GeoCoderHelpers.EmailUngeo(_ungeoList))
@@ -95,15 +85,11 @@ namespace GeoCoder
                 MessageBox.Show("Error sending email! ");
 
             ExportResults();
-
             dataGridViewAddresses.DataSource = _ungeoList;
-
             _resultStats = GeoCoderHelpers.CalculateResults(_ungeoList);
-
             UpdateResultsPanel();
 
             Cursor.Current = Cursors.Default;
-
             HideProgress();
         }
 
@@ -175,9 +161,7 @@ namespace GeoCoder
             DialogResult result = openFileLoad.ShowDialog();
 
             if (result == DialogResult.OK)
-            {
                 LoadCsv(openFileLoad.FileName);
-            }
         }
 
         private void ExportResults()
@@ -218,13 +202,9 @@ namespace GeoCoder
            if (e.ColumnIndex == 2 || e.ColumnIndex == 3)
            {  
                if (e.Value.ToString() != "0")
-               {
                    e.CellStyle.BackColor = Color.LightGreen; 
-               }
                else
-               {
                    e.CellStyle.BackColor = Color.LightPink;
-               }
            }
         }
 

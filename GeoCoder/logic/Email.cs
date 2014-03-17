@@ -18,14 +18,13 @@ namespace GeoCoder.logic
 
             try
             {
-                // create a new smtp client with required settings
-                SmtpClient smtp = setupClient();
-
-                // create the mailMessage from the ungeo list
-                MailMessage messageUngeocoded = CreateUngeocodedMessage(_ungeoList, toAddress);
-
                 if (_ungeoList.Count > 0)
                 {
+                    // create a new smtp client with required settings
+                    SmtpClient smtp = setupClient();
+
+                    // create the mailMessage from the ungeo list
+                    MailMessage messageUngeocoded = CreateUngeocodedMessage(_ungeoList, toAddress);
                     // send the message if there are ungeocoded records to send
                     smtp.Send(messageUngeocoded);
                     status = true;
@@ -48,7 +47,6 @@ namespace GeoCoder.logic
             MailMessage message = new MailMessage();
 
             message.IsBodyHtml = true;
-            message.From = new MailAddress("schedulerbbpo@gmail.com");
             message.To.Add(new MailAddress(toAddress));
 
             message.Subject = "Ungeocoded - " + DateTime.Today.ToShortDateString();
@@ -60,39 +58,36 @@ namespace GeoCoder.logic
 
         private static string CreateMessageBodyString(List<Address> _ungeoList)
         {
-            // using string builder, create the table and the rows/columns for the emailMessage body 
+            // using stringbuilder, create the table and the rows/columns for the emailMessage body 
             StringBuilder sb = new StringBuilder();
             int recordCount = 0;
 
-            if (_ungeoList.Count > 0)
+            sb.Append("<table border = 1>");
+                sb.Append("<tr>");
+                    sb.Append("<td><b>Count</b></td>");
+                    sb.Append("<td><b>Record</b></td>");
+                    sb.Append("<td><b>Address</b></td>");
+                sb.Append("</tr>");
+
+            foreach (var record in _ungeoList)
             {
-                sb.Append("<table border = 1>");
-                    sb.Append("<tr>");
-                        sb.Append("<td><b>Count</b></td>");
-                        sb.Append("<td><b>Record</b></td>");
-                        sb.Append("<td><b>Address</b></td>");
-                    sb.Append("</tr>");
+                recordCount++;
+                sb.Append("<tr>");
+                    sb.Append("<td>" + recordCount + "</td>");
+                    sb.Append("<td>" + record.OrderNum + "</td>");
+                    sb.Append("<td>" + record.AddressString + "</td>");
+                sb.Append("</tr>");
+            }
 
-                foreach (var record in _ungeoList)
-                {
-                    recordCount++;
-                    sb.Append("<tr>");
-                        sb.Append("<td>" + recordCount + "</td>");
-                        sb.Append("<td>" + record.OrderNum + "</td>");
-                        sb.Append("<td>" + record.AddressString + "</td>");
-                    sb.Append("</tr>");
-                }
+            sb.Append("</table>");
 
-                sb.Append("</table>");
-
-                if (_ungeoList.Count > 1)
-                {
-                    sb.Insert(0, "<p><b> There are " + _ungeoList.Count + " ungeocoded records today </b></p>");
-                }
-                else
-                {
-                    sb.Insert(0, "<p><b> There is only " + _ungeoList.Count + "ungeocoded record today </b></p>");
-                }
+            if (_ungeoList.Count > 1)
+            {
+                sb.Insert(0, "<p><b> There are " + _ungeoList.Count + " ungeocoded records today </b></p>");
+            }
+            else
+            {
+                sb.Insert(0, "<p><b> There is only " + _ungeoList.Count + "ungeocoded record today </b></p>");
             }
 
             return sb.ToString();

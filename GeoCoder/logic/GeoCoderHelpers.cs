@@ -132,7 +132,6 @@ namespace GeoCoder.logic
                         }
                     }
                 }
-
             }
             catch (Exception)
             {
