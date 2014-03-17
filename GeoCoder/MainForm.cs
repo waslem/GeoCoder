@@ -180,30 +180,40 @@ namespace GeoCoder
 
         private void LoadCsv(string fileName)
         {
+            bool success = false;
+
             try
             {
                 CsvDoc csv = Csv.Load(fileName, true);
 
                 // hack way to do this now, will think of better way later.
-                // TODO: fix the loading the csv to be more robust
+                // TODO: fix the loading the csv to be more robust, need to error check this
                 foreach (OrderedDictionary t in csv.Data)
                 {
                     // assumes input from csv is in correct format
                     _ungeoList.Add(new Address(t[0] as string, t[1] as string));
                 }
+
+                success = true;
             }
             catch (IOException)
             {
                 MessageBox.Show(@"The file you are trying to access is currently open by another process, please close it and try again.");
+                _ungeoList = new List<Address>();
             }
             catch (Exception)
             {
                 MessageBox.Show(@"An unexpected error has occured.");
+                _ungeoList = new List<Address>();
             }
             finally
             {
-                dataGridViewAddresses.Show();
-                dataGridViewAddresses.DataSource = _ungeoList;
+                // only if successful do we bind the datasource and show addresses
+                if (success)
+                {
+                    dataGridViewAddresses.Show();
+                    dataGridViewAddresses.DataSource = _ungeoList;
+                }
             }
         }
 
