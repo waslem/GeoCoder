@@ -87,6 +87,7 @@
     <Compile Include="logic\Address.cs" />
     <Compile Include="logic\CsvExport.cs" />
     <Compile Include="logic\Email.cs" />
+    <Compile Include="logic\GeoCoderHelpers.cs" />
     <Compile Include="logic\ResultStats.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>

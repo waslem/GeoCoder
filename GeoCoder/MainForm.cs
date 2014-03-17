@@ -18,9 +18,6 @@ namespace GeoCoder
         private List<Address> _ungeoList = null;
         private ResultStats _resultStats;
 
-        private string _defaultSave = "K:\\";
-        private string _defaultOpen = "C:\\X-Y Files\\";
-
         public MainForm()
         {
             InitializeComponent();
@@ -40,7 +37,7 @@ namespace GeoCoder
         {
             if (folderBrowserDefaultSave.ShowDialog() == DialogResult.OK)
             {
-                _defaultSave = folderBrowserDefaultSave.SelectedPath;
+                Properties.Settings.Default.DefaultSave = folderBrowserDefaultSave.SelectedPath;
             }
         }
 
@@ -49,7 +46,7 @@ namespace GeoCoder
         {
             if (folderBrowserDefaultOpen.ShowDialog() == DialogResult.OK)
             {
-                _defaultOpen = folderBrowserDefaultOpen.SelectedPath;
+                Properties.Settings.Default.DefaultOpen = folderBrowserDefaultOpen.SelectedPath;
             }
         }
 
@@ -80,53 +77,34 @@ namespace GeoCoder
 
         private void buttonExport_Click(object sender, EventArgs e)
         {
-
-            // set cursor to wait cursor.
             Cursor.Current = Cursors.WaitCursor;
 
-            // set the label and progress bar to visible
             DisplayProgress();
 
             // use this to force the application to repaint the form directly after the
             // label and progress bar are set to visible
-            // see http://msdn.microsoft.com/en-us/library/system.windows.forms.application.doevents%28v=vs.110%29.aspx
-            //      "if you remove DoEvents from your code, your form will not repaint until 
-            //      the click event handler of the button is finished executing."
             Application.DoEvents();
 
-            // geocode/sort/email and export all addresses in ungeoList
             Geocode();
-            SortResults();
-            EmailUngeo();
+
+            _ungeoList = GeoCoderHelpers.SortResults(_ungeoList);
+
+            if (GeoCoderHelpers.EmailUngeo(_ungeoList))
+                MessageBox.Show("Email with ungeocoded records sent!");
+            else
+                MessageBox.Show("Error sending email! ");
+
             ExportResults();
 
             dataGridViewAddresses.DataSource = _ungeoList;
 
-            // set progress bar invisible again and cursor back to default
+            _resultStats = GeoCoderHelpers.CalculateResults(_ungeoList);
+
+            UpdateResultsPanel();
+
             Cursor.Current = Cursors.Default;
 
             HideProgress();
-            CalculateResults();
-            UpdateResultsPanel();
-        }
-
-        private void EmailUngeo()
-        {
-            // refine the list to the ungeo 
-            List<Address> _ungeoListLeft = _ungeoList
-                            .Where(u => u.X == 0.0)
-                            .Where(u => u.Y == 0.0)
-                            .ToList();
-
-            if (Email.Send("info@backofficebpo.com.au", _ungeoListLeft))
-            {
-                MessageBox.Show("Email with ungeocoded records sent!");
-            }
-            else 
-            {
-                MessageBox.Show("Error with sending email");
-            }
-
         }
 
         private void UpdateResultsPanel()
@@ -134,24 +112,6 @@ namespace GeoCoder
             this.lblRecordCount.Text = this._resultStats.RecordCount.ToString();
             this.lblGeocdedCount.Text = this._resultStats.GeocodedCount.ToString();
             this.lblUngeoCount.Text = this._resultStats.UngeocodedCount.ToString();
-        }
-
-        private void CalculateResults()
-        {
-            this._resultStats.RecordCount = _ungeoList.Count;
-
-            int i = 0;
-
-            foreach (var address in _ungeoList)
-            {
-                if (address.X > 0)
-                {
-                    i++;
-                }
-            }
-
-            this._resultStats.GeocodedCount = i;
-            this._resultStats.UngeocodedCount = this._resultStats.RecordCount - i;
         }
 
         private void DisplayProgress()
@@ -168,12 +128,9 @@ namespace GeoCoder
 
         private void Geocode()
         {
-            
-            foreach (var a in _ungeoList)
+            for (int i = 0; i < _ungeoList.Count; i++)
             {
-                a.Geocode();
-                
-                // progress bar steps
+                _ungeoList[i] = GeoCoderHelpers.GeoCode(_ungeoList[i]);
                 progressExport.PerformStep();
             }
         }
@@ -184,16 +141,7 @@ namespace GeoCoder
 
             try
             {
-                CsvDoc csv = Csv.Load(fileName, true);
-
-                // hack way to do this now, will think of better way later.
-                // TODO: fix the loading the csv to be more robust, need to error check this
-                foreach (OrderedDictionary t in csv.Data)
-                {
-                    // assumes input from csv is in correct format
-                    _ungeoList.Add(new Address(t[0] as string, t[1] as string));
-                }
-
+                GeoCoderHelpers.LoadCsv(fileName, _ungeoList);
                 success = true;
             }
             catch (IOException)
@@ -219,7 +167,9 @@ namespace GeoCoder
 
         private void OpenCsv()
         {
-            openFileLoad.InitialDirectory = _defaultOpen;
+            ResetAddressAndResults();
+
+            openFileLoad.InitialDirectory = Properties.Settings.Default.DefaultOpen;
             openFileLoad.Filter = @"csv files (*.csv)| *.csv";
 
             DialogResult result = openFileLoad.ShowDialog();
@@ -232,18 +182,17 @@ namespace GeoCoder
 
         private void ExportResults()
         {
-            saveFileDialogCsv.InitialDirectory = _defaultSave;
+            saveFileDialogCsv.InitialDirectory = Properties.Settings.Default.DefaultSave;
             saveFileDialogCsv.Filter = @"csv files (*.csv)| *.csv";
 
             DialogResult result = saveFileDialogCsv.ShowDialog();
 
             if (result == DialogResult.OK)
             {
-                //CsvExported generic class, exports a group of any type of objects to csv, in this case we export our list of address objects
-                var export = new CsvExport<Address>(_ungeoList);
-
                 try
                 {
+                    //CsvExported generic class, exports a group of any type of objects to csv, in this case we export our list of address objects
+                    var export = new CsvExport<Address>(_ungeoList);
                     export.ExportToFile(saveFileDialogCsv.FileName);
                 }
                 catch (IOException)
@@ -255,15 +204,6 @@ namespace GeoCoder
                     MessageBox.Show("Error");
                 }
             }
-        }
-
-        public void SortResults()
-        {
-            //sort list by y then x then ordernumber
-            _ungeoList = _ungeoList.OrderBy(address => address.Y)
-                                .ThenBy(address => address.X)
-                                .ThenBy(address => address.OrderNum)
-                                .ToList();
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
