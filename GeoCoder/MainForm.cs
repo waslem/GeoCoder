@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Linq;
 using System.Windows.Forms;
-using System.IO;
 using ComLib.CsvParse;
 using GeoCoder.logic;
 using System.Threading;
 using System.ComponentModel;
 using System.Drawing;
-using System.Diagnostics;
+using System.Collections.Generic;
+using System.IO;
 
 namespace GeoCoder
 {

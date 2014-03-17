@@ -11,5 +11,8 @@
     <Setting Name="CsvFilter" Type="System.String" Scope="User">
       <Value Profile="(Default)">csv files (*.csv)| *.csv</Value>
     </Setting>
+    <Setting Name="GoogleMapApiLink" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://maps.googleapis.com/maps/api/geocode/xml?address=</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

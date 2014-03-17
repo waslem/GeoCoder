@@ -58,5 +58,17 @@ namespace GeoCoder.Properties {
                 this["CsvFilter"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://maps.googleapis.com/maps/api/geocode/xml?address=")]
+        public string GoogleMapApiLink {
+            get {
+                return ((string)(this["GoogleMapApiLink"]));
+            }
+            set {
+                this["GoogleMapApiLink"] = value;
+            }
+        }
     }
 }

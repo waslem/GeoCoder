@@ -78,8 +78,7 @@ namespace GeoCoder.logic
         {
             var newXcoords = "0.0";
             var newYcoords = "0.0";
-            var url = "http://maps.googleapis.com/maps/api/geocode/" +
-                "xml?address=" + record.AddressString + "&sensor=false";
+            var url = Properties.Settings.Default.GoogleMapApiLink + record.AddressString + "&sensor=false";
 
             WebResponse response = null;
 
