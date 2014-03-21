@@ -48,6 +48,7 @@ namespace GeoCoder.logic
 
             message.IsBodyHtml = true;
             message.To.Add(new MailAddress(toAddress));
+            message.From = new MailAddress("schedulerbbpo@gmail.com");
 
             message.Subject = "Ungeocoded - " + DateTime.Today.ToShortDateString();
 

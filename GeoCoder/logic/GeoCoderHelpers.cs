@@ -148,5 +148,26 @@ namespace GeoCoder.logic
 
             return record;
         }
+
+        public static List<AddressExport> ConvertList(List<Address> _ungeoList)
+        {
+            List<AddressExport> list = new List<AddressExport>();
+
+            foreach (var record in _ungeoList)
+            {
+                if (record.X != 0.0 && record.Y != 0.0)
+                {
+                    list.Add(new AddressExport
+                    {
+                        OrderNum = record.OrderNum,
+                        DriverName = "",
+                        X = record.X,
+                        Y = record.Y
+                    });
+                }
+            }
+
+            return list;
+        }
     }
 }

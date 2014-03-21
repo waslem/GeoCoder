@@ -172,8 +172,10 @@ namespace GeoCoder
             {
                 try
                 {
+                    List<AddressExport> exportList = GeoCoderHelpers.ConvertList(_ungeoList);
                     //CsvExported generic class, exports a group of any type of objects to csv, in this case we export our list of address objects
-                    var export = new CsvExport<Address>(_ungeoList);
+                    // var export = new CsvExport<Address>(_ungeolist);
+                    var export = new CsvExport<AddressExport>(exportList);
                     export.ExportToFile(saveFileDialogCsv.FileName);
                 }
                 catch (IOException)

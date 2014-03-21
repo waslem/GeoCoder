@@ -85,6 +85,7 @@
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
     <Compile Include="logic\Address.cs" />
+    <Compile Include="logic\AddressExport.cs" />
     <Compile Include="logic\CsvExport.cs" />
     <Compile Include="logic\Email.cs" />
     <Compile Include="logic\GeoCoderHelpers.cs" />
