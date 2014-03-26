@@ -9,37 +9,97 @@ using System.Threading.Tasks;
 
 namespace GeoCoder.logic
 {
-    public static class Email
+    public class Email
     {
-        public static bool Send(string toAddress, List<Address> _ungeoList)
+        private SmtpClient smtp;
+
+        public Email()
         {
-            // track success status of method
+            smtp = setupClient();
+        }
+
+        public bool Send(string toAddress, List<Address> _ungeoList)
+        {
+            bool status = false;
+
+            var rejectList = _ungeoList.Where(u => u.X > 0.0 || u.Y > 0.0);
+
+            var filteredList = _ungeoList.Except(rejectList).ToList();
+
+            try
+            {
+                MailMessage messageUngeocoded = CreateUngeocodedMessage(filteredList, toAddress);
+                smtp.Send(messageUngeocoded);
+
+                status = true;
+            }
+            catch
+            {
+                status = false;
+            }
+
+            return status;
+        }
+
+        public bool Send(string toAddress, ResultStats results)
+        {
             bool status = false;
 
             try
             {
-                if (_ungeoList.Count > 0)
-                {
-                    // create a new smtp client with required settings
-                    SmtpClient smtp = setupClient();
+                MailMessage messageResults = CreateResultsMessage(results, toAddress);
+                smtp.Send(messageResults);
 
-                    // create the mailMessage from the ungeo list
-                    MailMessage messageUngeocoded = CreateUngeocodedMessage(_ungeoList, toAddress);
-                    // send the message if there are ungeocoded records to send
-                    smtp.Send(messageUngeocoded);
-                    status = true;
-                }
+                status = true;
             }
-            catch(SmtpException ex)
+            catch
             {
-                Debug.Write(ex.Message); 
-            }
-            catch (Exception e)
-            {
-                Debug.Write(e.Message);
+                status = false;
             }
 
             return status;
+        }
+
+        private static MailMessage CreateResultsMessage(ResultStats results, string toAddress)
+        {
+            MailMessage message = new MailMessage();
+
+            message.IsBodyHtml = true;
+            message.To.Add(new MailAddress(toAddress));
+            message.From = new MailAddress("Schedulerbbpo@gmail.com");
+
+            message.Subject = "Geocoding Results - " + DateTime.Today.ToShortDateString();
+
+            message.Body = CreateResultsMessageBodyString(results);
+
+            return message;
+        }
+
+        private static string CreateResultsMessageBodyString(ResultStats results)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            double geoCount = results.GeocodedCount;
+            double totalCount = results.RecordCount;
+            double successRate = (geoCount / totalCount) * 100;
+
+            sb.Append("<table border = 1>");
+                sb.Append("<tr>");
+                    sb.Append("<td><b>Total records</b></td>");
+                    sb.Append("<td><b>Records Geocoded</b></td>");
+                    sb.Append("<td><b>Records Ungeocoded</b></td>");
+                    sb.Append("<td><b>Success</b></td>");
+                sb.Append("</tr>");
+
+                sb.Append("<tr>");
+                    sb.Append("<td>" + results.RecordCount + "</td>");
+                    sb.Append("<td>" + results.GeocodedCount + "</td>");
+                    sb.Append("<td>" + results.UngeocodedCount + "</td>");
+                    sb.Append("<td>" + successRate.ToString("F0") + "%</td>");
+                sb.Append("</tr>");
+            sb.Append("</table>");
+
+            return sb.ToString();
         }
 
         private static MailMessage CreateUngeocodedMessage(List<Address> _ungeoList, string toAddress)

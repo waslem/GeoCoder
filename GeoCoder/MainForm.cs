@@ -76,15 +76,24 @@ namespace GeoCoder
             Geocode();
             _ungeoList = GeoCoderHelpers.SortResults(_ungeoList);
 
-            if (GeoCoderHelpers.EmailUngeo(_ungeoList))
-                MessageBox.Show("Email with ungeocoded records sent!");
-            else
-                MessageBox.Show(Properties.Settings.Default.UnexpectedErrorMessage);
-
             ExportResults();
             dataGridViewAddresses.DataSource = _ungeoList;
             _resultStats = GeoCoderHelpers.CalculateResults(_ungeoList);
             UpdateResultsPanel();
+
+            Email email = new Email();
+
+            if (email.Send("info@backofficebpo.com.au", _ungeoList) && email.Send("scheduler@backofficebpo.com.au", _resultStats))
+            {
+                MessageBox.Show("Email with ungeocoded records sent!");
+            }
+            else
+                MessageBox.Show(Properties.Settings.Default.UnexpectedErrorMessage);
+
+            //if (GeoCoderHelpers.EmailUngeo(_ungeoList))
+            //    MessageBox.Show("Email with ungeocoded records sent!");
+            //else
+            //    MessageBox.Show(Properties.Settings.Default.UnexpectedErrorMessage);
 
             Cursor.Current = Cursors.Default;
             HideProgress();

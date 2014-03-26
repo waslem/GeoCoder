@@ -12,22 +12,6 @@ namespace GeoCoder.logic
 {
     public static class GeoCoderHelpers
     {
-        public static bool EmailUngeo(List<Address> _ungeoList)
-        {
-            bool success = false;
-
-            // refine the list to the ungeo 
-            List<Address> _ungeoListLeft = _ungeoList
-                            .Where(u => u.X == 0.0)
-                            .Where(u => u.Y == 0.0)
-                            .ToList();
-
-            if (Email.Send("info@backofficebpo.com.au", _ungeoListLeft))
-                success = true;
-
-            return success;
-        }
-
         public static List<Address> LoadCsv(string fileName, List<Address> _ungeoList)
         {
             CsvDoc csv = Csv.Load(fileName, true);
