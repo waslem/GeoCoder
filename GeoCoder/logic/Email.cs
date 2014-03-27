@@ -82,20 +82,45 @@ namespace GeoCoder.logic
             double geoCount = results.GeocodedCount;
             double totalCount = results.RecordCount;
             double successRate = (geoCount / totalCount) * 100;
+            string successColor = "";
+
+            // style it up!
+            if (successRate < 10)
+                successColor = "#FF0000'>";
+            else if (successRate < 25)
+                successColor = "#FF6600'>";
+            else if (successRate < 50)
+                successColor = "#FFFF66'>";
+            else if (successRate < 75)
+                successColor = "#99FF66'>";
+            else if (successRate < 90)
+                successColor = "#00FF00'>";
+            else if (successRate == 100)
+                successColor = "#006600'>";
+            else
+                successColor = "#000'>";
 
             sb.Append("<table border = 1>");
                 sb.Append("<tr>");
                     sb.Append("<td><b>Total records</b></td>");
                     sb.Append("<td><b>Records Geocoded</b></td>");
                     sb.Append("<td><b>Records Ungeocoded</b></td>");
-                    sb.Append("<td><b>Success</b></td>");
+                    sb.Append("<td bgcolor='");
+
+                    sb.Append(successColor);
+
+                    sb.Append("<b>Success</b></td>");
                 sb.Append("</tr>");
 
                 sb.Append("<tr>");
                     sb.Append("<td>" + results.RecordCount + "</td>");
                     sb.Append("<td>" + results.GeocodedCount + "</td>");
                     sb.Append("<td>" + results.UngeocodedCount + "</td>");
-                    sb.Append("<td>" + successRate.ToString("F0") + "%</td>");
+                    sb.Append("<td bgcolor='");
+
+                    sb.Append(successColor);
+
+                    sb.Append(successRate.ToString("F0") + "%</td>");
                 sb.Append("</tr>");
             sb.Append("</table>");
 

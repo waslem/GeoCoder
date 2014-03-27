@@ -83,17 +83,15 @@ namespace GeoCoder
 
             Email email = new Email();
 
-            if (email.Send("info@backofficebpo.com.au", _ungeoList) && email.Send("scheduler@backofficebpo.com.au", _resultStats))
+            if (email.Send("info@backofficebpo.com.au", _ungeoList) &&
+                email.Send("scheduler@backofficebpo.com.au", _resultStats))
             {
                 MessageBox.Show("Email with ungeocoded records sent!");
             }
             else
+            {
                 MessageBox.Show(Properties.Settings.Default.UnexpectedErrorMessage);
-
-            //if (GeoCoderHelpers.EmailUngeo(_ungeoList))
-            //    MessageBox.Show("Email with ungeocoded records sent!");
-            //else
-            //    MessageBox.Show(Properties.Settings.Default.UnexpectedErrorMessage);
+            }
 
             Cursor.Current = Cursors.Default;
             HideProgress();
