@@ -37,7 +37,7 @@ namespace GeoCoder.logic
 
         public Address()
         {
-            _address = "";
+            _address = " ";
             _orderNum = "";
             _xCoord = 0.0;
             _yCoord = 0.0;

@@ -18,10 +18,19 @@ namespace GeoCoder.logic
 
             // hack way to do this now, will think of better way later.
             // TODO: fix the loading the csv to be more robust, need to error check this
+
+            
             foreach (OrderedDictionary t in csv.Data)
             {
-                // assumes input from csv is in correct format
-                _ungeoList.Add(new Address(t[0] as string, t[1] as string));
+                // fix if the address is blank or just a space
+                if (t[1].ToString() == " " || t[1].ToString() == "" || t[1].ToString() == null)
+                {
+                    _ungeoList.Add(new Address(t[0] as string, " "));
+                }
+                else                                            
+                {
+                    _ungeoList.Add(new Address(t[0] as string, t[1] as string));
+                }
             }
 
             return _ungeoList;
