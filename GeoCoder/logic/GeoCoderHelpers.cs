@@ -29,13 +29,23 @@ namespace GeoCoder.logic
 
         public static List<Address> SortResults(List<Address> _ungeoList)
         {
+            List<Address> listFixed = new List<Address>();
+
+            // fix to remove null values from the ungeoList to stop exception by sorting null values below.
+            foreach (var address in _ungeoList)
+            {
+                if (address != null)
+                {
+                    listFixed.Add(address);
+                }
+            }
             //sort list by y then x then ordernumber
-            _ungeoList = _ungeoList.OrderBy(address => address.Y)
+            listFixed = listFixed.OrderBy(address => address.Y)
                                 .ThenBy(address => address.X)
                                 .ThenBy(address => address.OrderNum)
                                 .ToList();
 
-            return _ungeoList;
+            return listFixed;
         }
 
         public static ResultStats CalculateResults(List<Address> _ungeoList)

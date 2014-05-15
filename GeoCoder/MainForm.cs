@@ -32,15 +32,15 @@ namespace GeoCoder
         // default open
         private void toolStripMenuDefaultOpen_Click(object sender, EventArgs e)
         {
-            if (folderBrowserDefaultSave.ShowDialog() == DialogResult.OK)
-                Properties.Settings.Default.DefaultSave = folderBrowserDefaultSave.SelectedPath;
+            if (folderBrowserDefaultOpen.ShowDialog() == DialogResult.OK)
+                Properties.Settings.Default.DefaultOpen = folderBrowserDefaultOpen.SelectedPath;
         }
 
         // default close
         private void toolStripMenuDefaultSave_Click(object sender, EventArgs e)
         {
-            if (folderBrowserDefaultOpen.ShowDialog() == DialogResult.OK)
-                Properties.Settings.Default.DefaultOpen = folderBrowserDefaultOpen.SelectedPath;
+            if (folderBrowserDefaultSave.ShowDialog() == DialogResult.OK)
+                Properties.Settings.Default.DefaultSave = folderBrowserDefaultSave.SelectedPath;
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
