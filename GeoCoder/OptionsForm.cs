@@ -67,11 +67,6 @@ namespace GeoCoder
 	        }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void SetDefaultOpenLocation_Click(object sender, EventArgs e)
         {
             if (folderBrowserDialogOpen.ShowDialog() == DialogResult.OK)

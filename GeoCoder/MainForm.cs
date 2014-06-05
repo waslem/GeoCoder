@@ -24,8 +24,8 @@ namespace GeoCoder
         {
             _ungeoList = new List<Address>();
             _resultStats = new ResultStats();
-            dataGridViewAddresses.Visible = false;
 
+            dataGridViewAddresses.Visible = false;
             btnGeocode.Enabled = false;
             btnExportBailiff.Enabled = false;
             btnExportInhouse.Enabled = false;
@@ -246,7 +246,8 @@ namespace GeoCoder
 
         private void ExportResultsInhouse()
         {
-            saveFileDialogCsv.InitialDirectory = Properties.Settings.Default.DefaultSave;
+            saveFileDialogCsv.InitialDirectory = Properties.Settings.Default.DefaultOpen;
+            saveFileDialogCsv.FileName = "";
             saveFileDialogCsv.Filter = Properties.Settings.Default.CsvFilter;
 
             DialogResult result = saveFileDialogCsv.ShowDialog();
