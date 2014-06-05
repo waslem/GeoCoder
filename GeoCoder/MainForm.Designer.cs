@@ -29,25 +29,19 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.buttonExport = new System.Windows.Forms.Button();
+            this.btnExportBailiff = new System.Windows.Forms.Button();
             this.menuStripMain = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuDefaultSave = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuDefaultOpen = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileLoad = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialogCsv = new System.Windows.Forms.SaveFileDialog();
-            this.buttonImport = new System.Windows.Forms.Button();
-            this.folderBrowserDefaultSave = new System.Windows.Forms.FolderBrowserDialog();
-            this.folderBrowserDefaultOpen = new System.Windows.Forms.FolderBrowserDialog();
+            this.btnImport = new System.Windows.Forms.Button();
             this.progressExport = new System.Windows.Forms.ProgressBar();
-            this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panelButtons = new System.Windows.Forms.Panel();
             this.dataGridViewAddresses = new System.Windows.Forms.DataGridView();
@@ -62,6 +56,10 @@
             this.lblUngeo = new System.Windows.Forms.Label();
             this.lblGeocoded = new System.Windows.Forms.Label();
             this.lblResults = new System.Windows.Forms.Label();
+            this.btnGeocode = new System.Windows.Forms.Button();
+            this.btnExportInhouse = new System.Windows.Forms.Button();
+            this.btnEmailUngeo = new System.Windows.Forms.Button();
+            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panelButtons.SuspendLayout();
@@ -71,15 +69,15 @@
             this.panelResults.SuspendLayout();
             this.SuspendLayout();
             // 
-            // buttonExport
+            // btnExportBailiff
             // 
-            this.buttonExport.Location = new System.Drawing.Point(85, 147);
-            this.buttonExport.Name = "buttonExport";
-            this.buttonExport.Size = new System.Drawing.Size(144, 54);
-            this.buttonExport.TabIndex = 2;
-            this.buttonExport.Text = "Export Results";
-            this.buttonExport.UseVisualStyleBackColor = true;
-            this.buttonExport.Click += new System.EventHandler(this.buttonExport_Click);
+            this.btnExportBailiff.Location = new System.Drawing.Point(85, 151);
+            this.btnExportBailiff.Name = "btnExportBailiff";
+            this.btnExportBailiff.Size = new System.Drawing.Size(101, 30);
+            this.btnExportBailiff.TabIndex = 2;
+            this.btnExportBailiff.Text = "Export Bailiff";
+            this.btnExportBailiff.UseVisualStyleBackColor = true;
+            this.btnExportBailiff.Click += new System.EventHandler(this.buttonExportBailiff_Click);
             // 
             // menuStripMain
             // 
@@ -88,7 +86,7 @@
             this.helpToolStripMenuItem});
             this.menuStripMain.Location = new System.Drawing.Point(0, 0);
             this.menuStripMain.Name = "menuStripMain";
-            this.menuStripMain.Size = new System.Drawing.Size(1023, 24);
+            this.menuStripMain.Size = new System.Drawing.Size(964, 24);
             this.menuStripMain.TabIndex = 3;
             this.menuStripMain.Text = "menuStrip1";
             // 
@@ -96,8 +94,7 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openToolStripMenuItem,
-            this.toolStripMenuDefaultSave,
-            this.toolStripMenuDefaultOpen,
+            this.optionsToolStripMenuItem,
             this.toolStripSeparator,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -110,23 +107,9 @@
             this.openToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.openToolStripMenuItem.Text = "&Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
-            // 
-            // toolStripMenuDefaultSave
-            // 
-            this.toolStripMenuDefaultSave.Name = "toolStripMenuDefaultSave";
-            this.toolStripMenuDefaultSave.Size = new System.Drawing.Size(193, 22);
-            this.toolStripMenuDefaultSave.Text = "Default Save Location";
-            this.toolStripMenuDefaultSave.Click += new System.EventHandler(this.toolStripMenuDefaultSave_Click);
-            // 
-            // toolStripMenuDefaultOpen
-            // 
-            this.toolStripMenuDefaultOpen.Name = "toolStripMenuDefaultOpen";
-            this.toolStripMenuDefaultOpen.Size = new System.Drawing.Size(193, 22);
-            this.toolStripMenuDefaultOpen.Text = "Default Open Location";
-            this.toolStripMenuDefaultOpen.Click += new System.EventHandler(this.toolStripMenuDefaultOpen_Click);
             // 
             // toolStripSeparator
             // 
@@ -151,7 +134,7 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.aboutToolStripMenuItem.Text = "&About...";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -159,67 +142,43 @@
             // 
             this.openFileLoad.FileName = "openFileLoad";
             // 
-            // buttonImport
+            // btnImport
             // 
-            this.buttonImport.Location = new System.Drawing.Point(85, 74);
-            this.buttonImport.Name = "buttonImport";
-            this.buttonImport.Size = new System.Drawing.Size(144, 54);
-            this.buttonImport.TabIndex = 5;
-            this.buttonImport.Text = "Import CSV";
-            this.buttonImport.UseVisualStyleBackColor = true;
-            this.buttonImport.Click += new System.EventHandler(this.buttonImport_Click);
-            // 
-            // folderBrowserDefaultSave
-            // 
-            this.folderBrowserDefaultSave.SelectedPath = "C:\\";
+            this.btnImport.Location = new System.Drawing.Point(85, 78);
+            this.btnImport.Name = "btnImport";
+            this.btnImport.Size = new System.Drawing.Size(101, 30);
+            this.btnImport.TabIndex = 5;
+            this.btnImport.Text = "Import CSV";
+            this.btnImport.UseVisualStyleBackColor = true;
+            this.btnImport.Click += new System.EventHandler(this.buttonImport_Click);
             // 
             // progressExport
             // 
             this.progressExport.Cursor = System.Windows.Forms.Cursors.WaitCursor;
-            this.progressExport.Location = new System.Drawing.Point(4, 54);
+            this.progressExport.Location = new System.Drawing.Point(3, 29);
             this.progressExport.Name = "progressExport";
-            this.progressExport.Size = new System.Drawing.Size(306, 23);
+            this.progressExport.Size = new System.Drawing.Size(262, 23);
             this.progressExport.Step = 4;
             this.progressExport.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressExport.TabIndex = 6;
             this.progressExport.Click += new System.EventHandler(this.buttonExport_Click);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(85, 147);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(144, 54);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Export Results";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.buttonExport_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.CausesValidation = false;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(65, 27);
+            this.label2.Location = new System.Drawing.Point(42, 18);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(211, 24);
             this.label2.TabIndex = 4;
             this.label2.Text = "BBPO CSV Geocoder";
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(85, 74);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(144, 54);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Import CSV";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.buttonImport_Click);
-            // 
             // pictureBox2
             // 
             this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.Location = new System.Drawing.Point(37, 27);
+            this.pictureBox2.Location = new System.Drawing.Point(14, 18);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(27, 38);
             this.pictureBox2.TabIndex = 7;
@@ -228,15 +187,16 @@
             // panelButtons
             // 
             this.panelButtons.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panelButtons.Controls.Add(this.btnEmailUngeo);
+            this.panelButtons.Controls.Add(this.btnExportInhouse);
+            this.panelButtons.Controls.Add(this.btnGeocode);
             this.panelButtons.Controls.Add(this.label2);
             this.panelButtons.Controls.Add(this.pictureBox2);
-            this.panelButtons.Controls.Add(this.buttonExport);
-            this.panelButtons.Controls.Add(this.button1);
-            this.panelButtons.Controls.Add(this.button2);
-            this.panelButtons.Controls.Add(this.buttonImport);
+            this.panelButtons.Controls.Add(this.btnExportBailiff);
+            this.panelButtons.Controls.Add(this.btnImport);
             this.panelButtons.Location = new System.Drawing.Point(14, 14);
             this.panelButtons.Name = "panelButtons";
-            this.panelButtons.Size = new System.Drawing.Size(316, 224);
+            this.panelButtons.Size = new System.Drawing.Size(272, 284);
             this.panelButtons.TabIndex = 8;
             // 
             // dataGridViewAddresses
@@ -246,7 +206,7 @@
             this.dataGridViewAddresses.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridViewAddresses.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dataGridViewAddresses.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewAddresses.Location = new System.Drawing.Point(350, 14);
+            this.dataGridViewAddresses.Location = new System.Drawing.Point(292, 14);
             this.dataGridViewAddresses.Name = "dataGridViewAddresses";
             this.dataGridViewAddresses.Size = new System.Drawing.Size(631, 482);
             this.dataGridViewAddresses.TabIndex = 9;
@@ -260,7 +220,7 @@
             this.panelMain.Controls.Add(this.panelButtons);
             this.panelMain.Location = new System.Drawing.Point(12, 38);
             this.panelMain.Name = "panelMain";
-            this.panelMain.Size = new System.Drawing.Size(999, 513);
+            this.panelMain.Size = new System.Drawing.Size(940, 513);
             this.panelMain.TabIndex = 10;
             this.panelMain.Paint += new System.Windows.Forms.PaintEventHandler(this.panelMain_Paint);
             // 
@@ -269,16 +229,16 @@
             this.panelProgress.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panelProgress.Controls.Add(this.progressExport);
             this.panelProgress.Controls.Add(this.lblProgress);
-            this.panelProgress.Location = new System.Drawing.Point(14, 401);
+            this.panelProgress.Location = new System.Drawing.Point(14, 438);
             this.panelProgress.Name = "panelProgress";
-            this.panelProgress.Size = new System.Drawing.Size(316, 95);
+            this.panelProgress.Size = new System.Drawing.Size(272, 58);
             this.panelProgress.TabIndex = 12;
             // 
             // lblProgress
             // 
             this.lblProgress.AutoSize = true;
             this.lblProgress.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProgress.Location = new System.Drawing.Point(98, 19);
+            this.lblProgress.Location = new System.Drawing.Point(81, 0);
             this.lblProgress.Name = "lblProgress";
             this.lblProgress.Size = new System.Drawing.Size(111, 24);
             this.lblProgress.TabIndex = 10;
@@ -294,9 +254,9 @@
             this.panelResults.Controls.Add(this.lblUngeo);
             this.panelResults.Controls.Add(this.lblGeocoded);
             this.panelResults.Controls.Add(this.lblResults);
-            this.panelResults.Location = new System.Drawing.Point(14, 255);
+            this.panelResults.Location = new System.Drawing.Point(14, 304);
             this.panelResults.Name = "panelResults";
-            this.panelResults.Size = new System.Drawing.Size(316, 128);
+            this.panelResults.Size = new System.Drawing.Size(272, 128);
             this.panelResults.TabIndex = 11;
             // 
             // lblUngeoCount
@@ -359,17 +319,54 @@
             // 
             this.lblResults.AutoSize = true;
             this.lblResults.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblResults.Location = new System.Drawing.Point(116, 13);
+            this.lblResults.Location = new System.Drawing.Point(90, 10);
             this.lblResults.Name = "lblResults";
             this.lblResults.Size = new System.Drawing.Size(70, 20);
             this.lblResults.TabIndex = 0;
             this.lblResults.Text = "Results";
             // 
+            // btnGeocode
+            // 
+            this.btnGeocode.Location = new System.Drawing.Point(85, 114);
+            this.btnGeocode.Name = "btnGeocode";
+            this.btnGeocode.Size = new System.Drawing.Size(101, 30);
+            this.btnGeocode.TabIndex = 8;
+            this.btnGeocode.Text = "Geocode";
+            this.btnGeocode.UseVisualStyleBackColor = true;
+            this.btnGeocode.Click += new System.EventHandler(this.btnGeocode_Click);
+            // 
+            // btnExportInhouse
+            // 
+            this.btnExportInhouse.Location = new System.Drawing.Point(85, 187);
+            this.btnExportInhouse.Name = "btnExportInhouse";
+            this.btnExportInhouse.Size = new System.Drawing.Size(101, 30);
+            this.btnExportInhouse.TabIndex = 9;
+            this.btnExportInhouse.Text = "Export In-House";
+            this.btnExportInhouse.UseVisualStyleBackColor = true;
+            this.btnExportInhouse.Click += new System.EventHandler(this.btnExportInhouse_Click);
+            // 
+            // btnEmailUngeo
+            // 
+            this.btnEmailUngeo.Location = new System.Drawing.Point(85, 224);
+            this.btnEmailUngeo.Name = "btnEmailUngeo";
+            this.btnEmailUngeo.Size = new System.Drawing.Size(101, 30);
+            this.btnEmailUngeo.TabIndex = 10;
+            this.btnEmailUngeo.Text = "Email Ungeo";
+            this.btnEmailUngeo.UseVisualStyleBackColor = true;
+            this.btnEmailUngeo.Click += new System.EventHandler(this.btnEmailUngeo_Click);
+            // 
+            // optionsToolStripMenuItem
+            // 
+            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.optionsToolStripMenuItem.Text = "&Options...";
+            this.optionsToolStripMenuItem.Click += new System.EventHandler(this.optionsToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1023, 563);
+            this.ClientSize = new System.Drawing.Size(964, 563);
             this.Controls.Add(this.panelMain);
             this.Controls.Add(this.menuStripMain);
             this.Cursor = System.Windows.Forms.Cursors.Default;
@@ -397,7 +394,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button buttonExport;
+        private System.Windows.Forms.Button btnExportBailiff;
         private System.Windows.Forms.MenuStrip menuStripMain;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
@@ -407,15 +404,9 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openFileLoad;
         private System.Windows.Forms.SaveFileDialog saveFileDialogCsv;
-        private System.Windows.Forms.Button buttonImport;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuDefaultOpen;
-        private System.Windows.Forms.FolderBrowserDialog folderBrowserDefaultSave;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuDefaultSave;
-        private System.Windows.Forms.FolderBrowserDialog folderBrowserDefaultOpen;
+        private System.Windows.Forms.Button btnImport;
         private System.Windows.Forms.ProgressBar progressExport;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Panel panelButtons;
         private System.Windows.Forms.DataGridView dataGridViewAddresses;
@@ -430,6 +421,10 @@
         private System.Windows.Forms.Label lblGeocoded;
         private System.Windows.Forms.Label lblResults;
         private System.Windows.Forms.Panel panelProgress;
+        private System.Windows.Forms.Button btnExportInhouse;
+        private System.Windows.Forms.Button btnGeocode;
+        private System.Windows.Forms.Button btnEmailUngeo;
+        private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
     }
 }
 

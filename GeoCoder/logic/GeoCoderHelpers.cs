@@ -18,8 +18,6 @@ namespace GeoCoder.logic
 
             // hack way to do this now, will think of better way later.
             // TODO: fix the loading the csv to be more robust, need to error check this
-
-            
             foreach (OrderedDictionary t in csv.Data)
             {
                 // fix if the address is blank or just a space
@@ -152,7 +150,7 @@ namespace GeoCoder.logic
             return record;
         }
 
-        public static List<AddressExport> ConvertList(List<Address> _ungeoList)
+        public static List<AddressExport> ConvertList(List<Address> _ungeoList, int startRef, int finishRef)
         {
             List<AddressExport> list = new List<AddressExport>();
 
@@ -160,13 +158,16 @@ namespace GeoCoder.logic
             {
                 if (record.X != 0.0 && record.Y != 0.0)
                 {
-                    list.Add(new AddressExport
+                    if (Int32.Parse(record.OrderNum) > startRef && Int32.Parse(record.OrderNum) < finishRef)
                     {
-                        OrderNum = record.OrderNum,
-                        DriverName = "",
-                        X = record.X,
-                        Y = record.Y
-                    });
+                        list.Add(new AddressExport
+                        {
+                            OrderNum = record.OrderNum,
+                            DriverName = "",
+                            X = record.X,
+                            Y = record.Y
+                        });
+                    }
                 }
             }
 

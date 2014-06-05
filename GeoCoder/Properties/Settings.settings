@@ -26,11 +26,20 @@
     <Setting Name="EmailPassword" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Schedule24</Value>
     </Setting>
-    <Setting Name="EmailHost" Type="System.String" Scope="Application">
+    <Setting Name="EmailHost" Type="System.String" Scope="User">
       <Value Profile="(Default)">smtp.gmail.com</Value>
     </Setting>
-    <Setting Name="EmailPort" Type="System.Int32" Scope="Application">
+    <Setting Name="EmailPort" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">587</Value>
+    </Setting>
+    <Setting Name="ReferenceCutoff" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">20000</Value>
+    </Setting>
+    <Setting Name="EmailAddressUngeo" Type="System.String" Scope="User">
+      <Value Profile="(Default)">info@backofficebpo.com.au</Value>
+    </Setting>
+    <Setting Name="EmailAddressResults" Type="System.String" Scope="User">
+      <Value Profile="(Default)">scheduler@backofficebpo.com.au</Value>
     </Setting>
   </Settings>
 </SettingsFile>

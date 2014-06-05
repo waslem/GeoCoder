@@ -26,21 +26,12 @@ namespace GeoCoder
             _resultStats = new ResultStats();
             dataGridViewAddresses.Visible = false;
 
+            btnGeocode.Enabled = false;
+            btnExportBailiff.Enabled = false;
+            btnExportInhouse.Enabled = false;
+            btnEmailUngeo.Enabled = false;
+
             HideProgress();
-        }
-
-        // default open
-        private void toolStripMenuDefaultOpen_Click(object sender, EventArgs e)
-        {
-            if (folderBrowserDefaultOpen.ShowDialog() == DialogResult.OK)
-                Properties.Settings.Default.DefaultOpen = folderBrowserDefaultOpen.SelectedPath;
-        }
-
-        // default close
-        private void toolStripMenuDefaultSave_Click(object sender, EventArgs e)
-        {
-            if (folderBrowserDefaultSave.ShowDialog() == DialogResult.OK)
-                Properties.Settings.Default.DefaultSave = folderBrowserDefaultSave.SelectedPath;
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -57,6 +48,8 @@ namespace GeoCoder
         {
             ResetAddressAndResults();
             OpenCsv();
+            btnImport.BackColor = Color.Green;
+            btnGeocode.Enabled = true;
         }
 
         private void ResetAddressAndResults()
@@ -67,34 +60,8 @@ namespace GeoCoder
 
         private void buttonExport_Click(object sender, EventArgs e)
         {
-            Cursor.Current = Cursors.WaitCursor;
-            DisplayProgress();
-
-            // use this to force the application to repaint the form directly after the
-            // label and progress bar are set to visible
-            Application.DoEvents();
-            Geocode();
-            _ungeoList = GeoCoderHelpers.SortResults(_ungeoList);
-
-            ExportResults();
-            dataGridViewAddresses.DataSource = _ungeoList;
-            _resultStats = GeoCoderHelpers.CalculateResults(_ungeoList);
-            UpdateResultsPanel();
-
-            Email email = new Email();
-
-            if (email.Send("info@backofficebpo.com.au", _ungeoList) &&
-                email.Send("scheduler@backofficebpo.com.au", _resultStats))
-            {
-                MessageBox.Show("Email with ungeocoded records sent!");
-            }
-            else
-            {
-                MessageBox.Show(Properties.Settings.Default.UnexpectedErrorMessage);
-            }
-
-            Cursor.Current = Cursors.Default;
-            HideProgress();
+            ExportResultsBailiff();
+            btnExportBailiff.BackColor = Color.Green;
         }
 
         private void UpdateResultsPanel()
@@ -168,7 +135,7 @@ namespace GeoCoder
                 LoadCsv(openFileLoad.FileName);
         }
 
-        private void ExportResults()
+        private void ExportResultsBailiff()
         {
             saveFileDialogCsv.InitialDirectory = Properties.Settings.Default.DefaultSave;
             saveFileDialogCsv.Filter = Properties.Settings.Default.CsvFilter;
@@ -179,7 +146,14 @@ namespace GeoCoder
             {
                 try
                 {
-                    List<AddressExport> exportList = GeoCoderHelpers.ConvertList(_ungeoList);
+                    // convertlist extra variable, have this as an option to allow cut off limit for reference numbers
+                    // this will allow you to dynamically assign the cut off limit for inhouse / bailiff in the options
+                    // will fix potential future issues
+
+                   // geocoderhelpers.convertlist(ungeolist, startreference, finishreference)
+                    List<AddressExport> exportList = GeoCoderHelpers
+                        .ConvertList(_ungeoList, Properties.Settings.Default.ReferenceCutoff, 200000);
+
                     //CsvExported generic class, exports a group of any type of objects to csv, in this case we export our list of address objects
                     // var export = new CsvExport<Address>(_ungeolist);
                     var export = new CsvExport<AddressExport>(exportList);
@@ -222,6 +196,99 @@ namespace GeoCoder
                 e.Graphics.DrawRectangle(p, new Rectangle(1, 1, panelMain.ClientSize.Width - 2,
                                                                 panelMain.ClientSize.Height - 2));
             }
+        }
+
+        private void btnGeocode_Click(object sender, EventArgs e)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            DisplayProgress();
+
+            // use this to force the application to repaint the form directly after the
+            // label and progress bar are set to visible
+            Application.DoEvents();
+            Geocode();
+            _ungeoList = GeoCoderHelpers.SortResults(_ungeoList);
+
+            Cursor.Current = Cursors.Default;
+            HideProgress();
+
+            dataGridViewAddresses.DataSource = _ungeoList;
+            _resultStats = GeoCoderHelpers.CalculateResults(_ungeoList);
+            UpdateResultsPanel();
+
+            btnGeocode.BackColor = Color.Green;
+            btnExportBailiff.Enabled = true;
+            btnExportInhouse.Enabled = true;
+            btnEmailUngeo.Enabled = true;
+
+        }
+
+        private void btnEmailUngeo_Click(object sender, EventArgs e)
+        {
+            Email email = new Email();
+
+            if (email.Send(Properties.Settings.Default.EmailAddressUngeo, _ungeoList) &&
+                email.Send(Properties.Settings.Default.EmailAddressResults, _resultStats))
+            {
+                MessageBox.Show("Email with ungeocoded records sent!");
+            }
+            else
+            {
+                MessageBox.Show(Properties.Settings.Default.UnexpectedErrorMessage);
+            }
+        }
+
+        private void btnExportInhouse_Click(object sender, EventArgs e)
+        {
+            ExportResultsInhouse();
+            btnExportInhouse.BackColor = Color.Green;
+        }
+
+        private void ExportResultsInhouse()
+        {
+            saveFileDialogCsv.InitialDirectory = Properties.Settings.Default.DefaultSave;
+            saveFileDialogCsv.Filter = Properties.Settings.Default.CsvFilter;
+
+            DialogResult result = saveFileDialogCsv.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                try
+                {
+                    // convertlist extra variable, have this as an option to allow cut off limit for reference numbers
+                    // this will allow you to dynamically assign the cut off limit for inhouse / bailiff in the options
+                    // will fix potential future issues
+
+                    // geocoderhelpers.convertlist(ungeolist, startreference, finishreference)
+                    List<AddressExport> exportList = GeoCoderHelpers
+                        .ConvertList(_ungeoList, 0, Properties.Settings.Default.ReferenceCutoff);
+
+                    //CsvExported generic class, exports a group of any type of objects to csv, in this case we export our list of address objects
+                    // var export = new CsvExport<Address>(_ungeolist);
+                    var export = new CsvExport<AddressExport>(exportList);
+                    export.ExportToFile(saveFileDialogCsv.FileName);
+                }
+                catch (IOException)
+                {
+                    MessageBox.Show(Properties.Settings.Default.FileInUseMessage);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show(Properties.Settings.Default.UnexpectedErrorMessage);
+                }
+            }
+        }
+
+        private void buttonExportBailiff_Click(object sender, EventArgs e)
+        {
+            ExportResultsBailiff();
+            btnExportBailiff.BackColor = Color.Green;
+        }
+
+        private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OptionsForm optionsForm = new OptionsForm();
+            optionsForm.ShowDialog();
         }
     }
 }
