@@ -100,7 +100,7 @@ namespace GeoCoder.logic
             else
                 successColor = "#000'>";
 
-            sb.Append("<table border = 1>");
+            sb.Append("<table border='1' style='text-align:center'>");
                 sb.Append("<tr>");
                     sb.Append("<td><b>Total records</b></td>");
                     sb.Append("<td><b>Records Geocoded</b></td>");
@@ -124,6 +124,16 @@ namespace GeoCoder.logic
                 sb.Append("</tr>");
             sb.Append("</table>");
 
+            sb.Append("<table style='padding-top:20px'>");
+                sb.Append("<tbody>");
+                    sb.Append("<tr>");
+                        sb.Append("<td> <b>Bailiff geocoded count:</b> " + results.BailiffGeocodedCount + "</td>");
+                    sb.Append("</tr>");
+                    sb.Append("<tr>");
+                        sb.Append("<td> <b>In-House geocoded count:</b> " + results.ExpressGeocdedCount + "</td>");
+                    sb.Append("</tr>");
+                sb.Append("</tbody>");
+            sb.Append("</table>");
             return sb.ToString();
         }
 

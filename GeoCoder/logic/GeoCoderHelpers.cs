@@ -7,6 +7,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.XPath;
+using GeoCoder.Properties;
 
 namespace GeoCoder.logic
 {
@@ -61,16 +62,39 @@ namespace GeoCoder.logic
 
             stats.RecordCount = _ungeoList.Count;
 
-            int i = 0;
+            int geoCount = 0;
+            int bailiffGeoCount = 0;
+            int expressGeoCount = 0;
+            int temp;
 
+            // loop through each address
+            //      if address is geocoded (address.x > 0)
+            //      find if address is a bailiff or express, using the cutoff setting
+            //      if so increment the required statistic
             foreach (var address in _ungeoList)
             {
                 if (address.X > 0)
-                    i++;
+                {
+                    geoCount++;
+
+                    if (Int32.TryParse(address.OrderNum, out temp))
+                    {
+                        if (temp >= Properties.Settings.Default.ReferenceCutoff)
+                        {
+                            bailiffGeoCount++;
+                        }
+                        else
+                        {
+                            expressGeoCount++;
+                        }
+                    }
+                }
             }
 
-            stats.GeocodedCount = i;
-            stats.UngeocodedCount = stats.RecordCount - i;
+            stats.GeocodedCount = geoCount;
+            stats.UngeocodedCount = stats.RecordCount - geoCount;
+            stats.BailiffGeocodedCount = bailiffGeoCount;
+            stats.ExpressGeocdedCount = expressGeoCount;
 
             return stats;
         }

@@ -29,6 +29,7 @@ namespace GeoCoder
             btnGeocode.Enabled = false;
             btnExportBailiff.Enabled = false;
             btnExportInhouse.Enabled = false;
+
             btnEmailUngeo.Enabled = false;
 
             HideProgress();
@@ -128,7 +129,7 @@ namespace GeoCoder
 
             openFileLoad.InitialDirectory = Properties.Settings.Default.DefaultOpen;
             openFileLoad.Filter = Properties.Settings.Default.CsvFilter;
-
+            openFileLoad.FileName = "";
             DialogResult result = openFileLoad.ShowDialog();
 
             if (result == DialogResult.OK)
@@ -138,7 +139,9 @@ namespace GeoCoder
         private void ExportResultsBailiff()
         {
             saveFileDialogCsv.InitialDirectory = Properties.Settings.Default.DefaultSave;
+            saveFileDialogCsv.FileName = "";
             saveFileDialogCsv.Filter = Properties.Settings.Default.CsvFilter;
+            saveFileDialogCsv.FileName = SetFileName("bailiff");
 
             DialogResult result = saveFileDialogCsv.ShowDialog();
 
@@ -225,15 +228,21 @@ namespace GeoCoder
 
         private void btnEmailUngeo_Click(object sender, EventArgs e)
         {
+            Cursor.Current = Cursors.WaitCursor;
+
             Email email = new Email();
 
             if (email.Send(Properties.Settings.Default.EmailAddressUngeo, _ungeoList) &&
                 email.Send(Properties.Settings.Default.EmailAddressResults, _resultStats))
             {
+                Cursor.Current = Cursors.Default;
+                btnEmailUngeo.BackColor = Color.Green;
                 MessageBox.Show("Email with ungeocoded records sent!");
             }
             else
             {
+                Cursor.Current = Cursors.Default;
+                btnEmailUngeo.BackColor = Color.Red;
                 MessageBox.Show(Properties.Settings.Default.UnexpectedErrorMessage);
             }
         }
@@ -246,9 +255,10 @@ namespace GeoCoder
 
         private void ExportResultsInhouse()
         {
-            saveFileDialogCsv.InitialDirectory = Properties.Settings.Default.DefaultOpen;
+            saveFileDialogCsv.InitialDirectory = Properties.Settings.Default.DefaultSave;
             saveFileDialogCsv.FileName = "";
             saveFileDialogCsv.Filter = Properties.Settings.Default.CsvFilter;
+            saveFileDialogCsv.FileName = SetFileName("inhouse");
 
             DialogResult result = saveFileDialogCsv.ShowDialog();
 
@@ -278,6 +288,11 @@ namespace GeoCoder
                     MessageBox.Show(Properties.Settings.Default.UnexpectedErrorMessage);
                 }
             }
+        }
+
+        private string SetFileName(string exportString)
+        {
+            return "ungeoResults-" + exportString + "-" + DateTime.Today.ToString("ddMMyyyy");
         }
 
         private void buttonExportBailiff_Click(object sender, EventArgs e)
