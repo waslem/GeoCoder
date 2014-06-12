@@ -111,6 +111,17 @@ namespace GeoCoder.logic
             {
                 var request = (HttpWebRequest)WebRequest.Create(url);
                 request.Method = "GET";
+
+                // initial test code for HttpWebRequest with baycorp proxy settings
+                // this worked when testing @ balcatta office
+                //var baycorpProxy = new WebProxy();
+                //baycorpProxy.BypassProxyOnLocal = true;
+                //baycorpProxy.Address = new Uri("http://auproxy:8080");
+
+                //baycorpProxy.Credentials = new NetworkCredential("bcs\\jamie.vanwalsum", "Schedule27");
+
+                //request.Proxy = baycorpProxy;
+
                 response = request.GetResponse();
                 var exactResult = 0;
 

@@ -143,7 +143,7 @@ namespace GeoCoder.logic
 
             message.IsBodyHtml = true;
             message.To.Add(new MailAddress(toAddress));
-            message.From = new MailAddress("schedulerbbpo@gmail.com");
+            message.From = new MailAddress(Properties.Settings.Default.EmailUsername);
 
             message.Subject = "Ungeocoded - " + DateTime.Today.ToShortDateString();
 
@@ -203,6 +203,7 @@ namespace GeoCoder.logic
                 (Properties.Settings.Default.EmailUsername, Properties.Settings.Default.EmailPassword);
 
             client.DeliveryMethod = SmtpDeliveryMethod.Network;
+
 
             return client;
         }
