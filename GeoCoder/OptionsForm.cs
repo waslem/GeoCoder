@@ -43,7 +43,6 @@ namespace GeoCoder
                 Properties.Settings.Default.SmtpHost = txtbxSmtpHost.Text;
                 Properties.Settings.Default.SmtpPort = Int32.Parse(txtbxSmtpPort.Text);
 
-
                 Crypto crypt = new Crypto(CryptoType: Crypto.CryptoTypes.encTypeTripleDES);
                 string pass = crypt.Encrypt(txtBoxSmtpPass.Text);
 

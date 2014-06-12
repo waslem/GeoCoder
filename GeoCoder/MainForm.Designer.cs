@@ -360,7 +360,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStripMain;
             this.Name = "MainForm";
-            this.Text = "BBPO Geocoder v1.0.0.8";
+            this.Text = "CSV Geocoder v1.0.0.8";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStripMain.ResumeLayout(false);
             this.menuStripMain.PerformLayout();
