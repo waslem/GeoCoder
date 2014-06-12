@@ -36,12 +36,9 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // contextMenuStrip1
@@ -57,7 +54,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(270, 20);
             this.label1.TabIndex = 1;
-            this.label1.Text = "BBPO GeoCoder Version 1.0.0.2";
+            this.label1.Text = "BBPO GeoCoder Version 1.0.0.8";
             // 
             // label2
             // 
@@ -105,15 +102,6 @@
             this.label6.TabIndex = 6;
             this.label6.Text = "and formats them in a way that can be imported into Baycorp\'s Collect System";
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(344, 308);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(133, 13);
-            this.label7.TabIndex = 7;
-            this.label7.Text = "Last updated: 14/01/2014";
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -135,7 +123,7 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(402, 324);
+            this.btnClose.Location = new System.Drawing.Point(391, 219);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 23);
             this.btnClose.TabIndex = 9;
@@ -143,37 +131,13 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Items.AddRange(new object[] {
-            "Reconfigure order of csv export to allow a more seamless data import",
-            "Specifically remove column B when saving, add new blank column DriverName"});
-            this.listBox1.Location = new System.Drawing.Point(44, 212);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(402, 43);
-            this.listBox1.TabIndex = 10;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(29, 193);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(55, 16);
-            this.label9.TabIndex = 11;
-            this.label9.Text = "To Do:";
-            // 
             // AboutForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(489, 359);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.listBox1);
+            this.ClientSize = new System.Drawing.Size(489, 256);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label10);
@@ -199,11 +163,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button btnClose;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.Label label9;
     }
 }

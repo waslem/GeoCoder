@@ -118,6 +118,7 @@ namespace GeoCoder.logic
                 //baycorpProxy.BypassProxyOnLocal = true;
                 //baycorpProxy.Address = new Uri("http://auproxy:8080");
 
+                // use the crpyto class and encrypt the password, store both in settings.settings
                 //baycorpProxy.Credentials = new NetworkCredential("bcs\\jamie.vanwalsum", "Schedule27");
 
                 //request.Proxy = baycorpProxy;

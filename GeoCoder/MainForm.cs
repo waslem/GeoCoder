@@ -22,6 +22,7 @@ namespace GeoCoder
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            this.Icon = Properties.Resources.geocoder;
             _ungeoList = new List<Address>();
             _resultStats = new ResultStats();
 

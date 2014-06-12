@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using GeoCoder.Properties;
+using GeoCoder.Encrypt;
 
 namespace GeoCoder
 {
@@ -19,8 +20,11 @@ namespace GeoCoder
             txtbxResultsEmail.Text = Properties.Settings.Default.EmailAddressResults;
             txtbxUngeoEmail.Text = Properties.Settings.Default.EmailAddressUngeo;
             txtbxInHouseCutoffReference.Text = Properties.Settings.Default.ReferenceCutoff.ToString();
-            txtbxSmtpHost.Text = Properties.Settings.Default.EmailHost;
-            txtbxSmtpPort.Text = Properties.Settings.Default.EmailPort.ToString();
+            txtbxSmtpHost.Text = Properties.Settings.Default.SmtpHost;
+            txtbxSmtpPort.Text = Properties.Settings.Default.SmtpPort.ToString();
+
+            txtBoxSmtpUser.Text = Properties.Settings.Default.EmailUsername;
+            txtBoxSmtpPass.Text = Properties.Settings.Default.EmailPassword;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -36,8 +40,14 @@ namespace GeoCoder
                 Properties.Settings.Default.EmailAddressUngeo = txtbxUngeoEmail.Text;
                 Properties.Settings.Default.ReferenceCutoff = Int32.Parse(txtbxInHouseCutoffReference.Text);
 
-                Properties.Settings.Default.EmailHost = txtbxSmtpHost.Text;
-                Properties.Settings.Default.EmailPort = Int32.Parse(txtbxSmtpPort.Text);
+                Properties.Settings.Default.SmtpHost = txtbxSmtpHost.Text;
+                Properties.Settings.Default.SmtpPort = Int32.Parse(txtbxSmtpPort.Text);
+
+
+                Crypto crypt = new Crypto(CryptoType: Crypto.CryptoTypes.encTypeTripleDES);
+                string pass = crypt.Encrypt(txtBoxSmtpPass.Text);
+
+                Properties.Settings.Default.EmailPassword = pass;
                 Properties.Settings.Default.Save();
 
                 Close();

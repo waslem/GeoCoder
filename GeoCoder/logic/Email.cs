@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GeoCoder.Encrypt;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -66,7 +67,7 @@ namespace GeoCoder.logic
 
             message.IsBodyHtml = true;
             message.To.Add(new MailAddress(toAddress));
-            message.From = new MailAddress("Schedulerbbpo@gmail.com");
+            message.From = new MailAddress(Properties.Settings.Default.EmailUsername);
 
             message.Subject = "Geocoding Results - " + DateTime.Today.ToShortDateString();
 
@@ -193,17 +194,17 @@ namespace GeoCoder.logic
         {
             SmtpClient client = new SmtpClient();
 
-            client.Port = Properties.Settings.Default.EmailPort;
-            client.Host = Properties.Settings.Default.EmailHost;
+            client.Port = Properties.Settings.Default.SmtpPort;
+            client.Host = Properties.Settings.Default.SmtpHost;
 
             client.EnableSsl = true;
             client.UseDefaultCredentials = false;
 
-            client.Credentials = new NetworkCredential
-                (Properties.Settings.Default.EmailUsername, Properties.Settings.Default.EmailPassword);
+            Crypto crypt = new Crypto(Crypto.CryptoTypes.encTypeTripleDES);
+            string pass = crypt.Decrypt(Properties.Settings.Default.EmailPassword);
 
+            client.Credentials = new NetworkCredential(Properties.Settings.Default.EmailUsername, pass);
             client.DeliveryMethod = SmtpDeliveryMethod.Network;
-
 
             return client;
         }

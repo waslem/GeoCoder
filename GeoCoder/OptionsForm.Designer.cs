@@ -47,6 +47,10 @@
             this.txtbxSmtpPort = new System.Windows.Forms.TextBox();
             this.folderBrowserDialogSave = new System.Windows.Forms.FolderBrowserDialog();
             this.folderBrowserDialogOpen = new System.Windows.Forms.FolderBrowserDialog();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtBoxSmtpUser = new System.Windows.Forms.TextBox();
+            this.txtBoxSmtpPass = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // lblEmailResults
@@ -86,7 +90,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(45, 262);
+            this.label2.Location = new System.Drawing.Point(48, 336);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(170, 13);
             this.label2.TabIndex = 4;
@@ -94,7 +98,7 @@
             // 
             // txtbxInHouseCutoffReference
             // 
-            this.txtbxInHouseCutoffReference.Location = new System.Drawing.Point(218, 259);
+            this.txtbxInHouseCutoffReference.Location = new System.Drawing.Point(221, 333);
             this.txtbxInHouseCutoffReference.Name = "txtbxInHouseCutoffReference";
             this.txtbxInHouseCutoffReference.Size = new System.Drawing.Size(181, 20);
             this.txtbxInHouseCutoffReference.TabIndex = 5;
@@ -102,7 +106,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(243, 316);
+            this.btnSave.Location = new System.Drawing.Point(246, 390);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 6;
@@ -112,7 +116,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(324, 316);
+            this.btnCancel.Location = new System.Drawing.Point(327, 390);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 7;
@@ -161,7 +165,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(15, 233);
+            this.label5.Location = new System.Drawing.Point(18, 307);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(89, 13);
             this.label5.TabIndex = 12;
@@ -201,11 +205,50 @@
             this.txtbxSmtpPort.TabIndex = 16;
             this.txtbxSmtpPort.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(132, 229);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(83, 13);
+            this.label8.TabIndex = 17;
+            this.label8.Text = "Smtp username:";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(132, 255);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(83, 13);
+            this.label9.TabIndex = 18;
+            this.label9.Text = "Smtp Password:";
+            // 
+            // txtBoxSmtpUser
+            // 
+            this.txtBoxSmtpUser.Location = new System.Drawing.Point(221, 226);
+            this.txtBoxSmtpUser.Name = "txtBoxSmtpUser";
+            this.txtBoxSmtpUser.Size = new System.Drawing.Size(178, 20);
+            this.txtBoxSmtpUser.TabIndex = 19;
+            this.txtBoxSmtpUser.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // txtBoxSmtpPass
+            // 
+            this.txtBoxSmtpPass.Location = new System.Drawing.Point(221, 252);
+            this.txtBoxSmtpPass.Name = "txtBoxSmtpPass";
+            this.txtBoxSmtpPass.Size = new System.Drawing.Size(178, 20);
+            this.txtBoxSmtpPass.TabIndex = 20;
+            this.txtBoxSmtpPass.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtBoxSmtpPass.UseSystemPasswordChar = true;
+            // 
             // OptionsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(411, 351);
+            this.ClientSize = new System.Drawing.Size(411, 422);
+            this.Controls.Add(this.txtBoxSmtpPass);
+            this.Controls.Add(this.txtBoxSmtpUser);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.txtbxSmtpPort);
             this.Controls.Add(this.txtbxSmtpHost);
             this.Controls.Add(this.label7);
@@ -251,5 +294,9 @@
         private System.Windows.Forms.TextBox txtbxSmtpPort;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialogSave;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialogOpen;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txtBoxSmtpUser;
+        private System.Windows.Forms.TextBox txtBoxSmtpPass;
     }
 }

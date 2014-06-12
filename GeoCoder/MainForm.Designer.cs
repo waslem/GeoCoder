@@ -33,6 +33,7 @@
             this.menuStripMain = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -42,8 +43,10 @@
             this.btnImport = new System.Windows.Forms.Button();
             this.progressExport = new System.Windows.Forms.ProgressBar();
             this.label2 = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panelButtons = new System.Windows.Forms.Panel();
+            this.btnEmailUngeo = new System.Windows.Forms.Button();
+            this.btnExportInhouse = new System.Windows.Forms.Button();
+            this.btnGeocode = new System.Windows.Forms.Button();
             this.dataGridViewAddresses = new System.Windows.Forms.DataGridView();
             this.panelMain = new System.Windows.Forms.Panel();
             this.panelProgress = new System.Windows.Forms.Panel();
@@ -56,12 +59,7 @@
             this.lblUngeo = new System.Windows.Forms.Label();
             this.lblGeocoded = new System.Windows.Forms.Label();
             this.lblResults = new System.Windows.Forms.Label();
-            this.btnGeocode = new System.Windows.Forms.Button();
-            this.btnExportInhouse = new System.Windows.Forms.Button();
-            this.btnEmailUngeo = new System.Windows.Forms.Button();
-            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripMain.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panelButtons.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAddresses)).BeginInit();
             this.panelMain.SuspendLayout();
@@ -107,19 +105,26 @@
             this.openToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.openToolStripMenuItem.Text = "&Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+            // 
+            // optionsToolStripMenuItem
+            // 
+            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.optionsToolStripMenuItem.Text = "&Options...";
+            this.optionsToolStripMenuItem.Click += new System.EventHandler(this.optionsToolStripMenuItem_Click);
             // 
             // toolStripSeparator
             // 
             this.toolStripSeparator.Name = "toolStripSeparator";
-            this.toolStripSeparator.Size = new System.Drawing.Size(190, 6);
+            this.toolStripSeparator.Size = new System.Drawing.Size(143, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -134,7 +139,7 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.aboutToolStripMenuItem.Text = "&About...";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -168,21 +173,11 @@
             this.label2.AutoSize = true;
             this.label2.CausesValidation = false;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(42, 18);
+            this.label2.Location = new System.Drawing.Point(69, 32);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(211, 24);
+            this.label2.Size = new System.Drawing.Size(150, 24);
             this.label2.TabIndex = 4;
-            this.label2.Text = "BBPO CSV Geocoder";
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
-            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.Location = new System.Drawing.Point(14, 18);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(27, 38);
-            this.pictureBox2.TabIndex = 7;
-            this.pictureBox2.TabStop = false;
+            this.label2.Text = "CSV Geocoder";
             // 
             // panelButtons
             // 
@@ -191,13 +186,42 @@
             this.panelButtons.Controls.Add(this.btnExportInhouse);
             this.panelButtons.Controls.Add(this.btnGeocode);
             this.panelButtons.Controls.Add(this.label2);
-            this.panelButtons.Controls.Add(this.pictureBox2);
             this.panelButtons.Controls.Add(this.btnExportBailiff);
             this.panelButtons.Controls.Add(this.btnImport);
             this.panelButtons.Location = new System.Drawing.Point(14, 14);
             this.panelButtons.Name = "panelButtons";
             this.panelButtons.Size = new System.Drawing.Size(272, 284);
             this.panelButtons.TabIndex = 8;
+            // 
+            // btnEmailUngeo
+            // 
+            this.btnEmailUngeo.Location = new System.Drawing.Point(85, 224);
+            this.btnEmailUngeo.Name = "btnEmailUngeo";
+            this.btnEmailUngeo.Size = new System.Drawing.Size(101, 30);
+            this.btnEmailUngeo.TabIndex = 10;
+            this.btnEmailUngeo.Text = "Email Ungeo";
+            this.btnEmailUngeo.UseVisualStyleBackColor = true;
+            this.btnEmailUngeo.Click += new System.EventHandler(this.btnEmailUngeo_Click);
+            // 
+            // btnExportInhouse
+            // 
+            this.btnExportInhouse.Location = new System.Drawing.Point(85, 187);
+            this.btnExportInhouse.Name = "btnExportInhouse";
+            this.btnExportInhouse.Size = new System.Drawing.Size(101, 30);
+            this.btnExportInhouse.TabIndex = 9;
+            this.btnExportInhouse.Text = "Export In-House";
+            this.btnExportInhouse.UseVisualStyleBackColor = true;
+            this.btnExportInhouse.Click += new System.EventHandler(this.btnExportInhouse_Click);
+            // 
+            // btnGeocode
+            // 
+            this.btnGeocode.Location = new System.Drawing.Point(85, 114);
+            this.btnGeocode.Name = "btnGeocode";
+            this.btnGeocode.Size = new System.Drawing.Size(101, 30);
+            this.btnGeocode.TabIndex = 8;
+            this.btnGeocode.Text = "Geocode";
+            this.btnGeocode.UseVisualStyleBackColor = true;
+            this.btnGeocode.Click += new System.EventHandler(this.btnGeocode_Click);
             // 
             // dataGridViewAddresses
             // 
@@ -325,43 +349,6 @@
             this.lblResults.TabIndex = 0;
             this.lblResults.Text = "Results";
             // 
-            // btnGeocode
-            // 
-            this.btnGeocode.Location = new System.Drawing.Point(85, 114);
-            this.btnGeocode.Name = "btnGeocode";
-            this.btnGeocode.Size = new System.Drawing.Size(101, 30);
-            this.btnGeocode.TabIndex = 8;
-            this.btnGeocode.Text = "Geocode";
-            this.btnGeocode.UseVisualStyleBackColor = true;
-            this.btnGeocode.Click += new System.EventHandler(this.btnGeocode_Click);
-            // 
-            // btnExportInhouse
-            // 
-            this.btnExportInhouse.Location = new System.Drawing.Point(85, 187);
-            this.btnExportInhouse.Name = "btnExportInhouse";
-            this.btnExportInhouse.Size = new System.Drawing.Size(101, 30);
-            this.btnExportInhouse.TabIndex = 9;
-            this.btnExportInhouse.Text = "Export In-House";
-            this.btnExportInhouse.UseVisualStyleBackColor = true;
-            this.btnExportInhouse.Click += new System.EventHandler(this.btnExportInhouse_Click);
-            // 
-            // btnEmailUngeo
-            // 
-            this.btnEmailUngeo.Location = new System.Drawing.Point(85, 224);
-            this.btnEmailUngeo.Name = "btnEmailUngeo";
-            this.btnEmailUngeo.Size = new System.Drawing.Size(101, 30);
-            this.btnEmailUngeo.TabIndex = 10;
-            this.btnEmailUngeo.Text = "Email Ungeo";
-            this.btnEmailUngeo.UseVisualStyleBackColor = true;
-            this.btnEmailUngeo.Click += new System.EventHandler(this.btnEmailUngeo_Click);
-            // 
-            // optionsToolStripMenuItem
-            // 
-            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.optionsToolStripMenuItem.Text = "&Options...";
-            this.optionsToolStripMenuItem.Click += new System.EventHandler(this.optionsToolStripMenuItem_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -371,14 +358,12 @@
             this.Controls.Add(this.menuStripMain);
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStripMain;
             this.Name = "MainForm";
             this.Text = "BBPO Geocoder v1.0.0.8";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStripMain.ResumeLayout(false);
             this.menuStripMain.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panelButtons.ResumeLayout(false);
             this.panelButtons.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAddresses)).EndInit();
@@ -407,7 +392,6 @@
         private System.Windows.Forms.Button btnImport;
         private System.Windows.Forms.ProgressBar progressExport;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Panel panelButtons;
         private System.Windows.Forms.DataGridView dataGridViewAddresses;
         private System.Windows.Forms.Panel panelMain;

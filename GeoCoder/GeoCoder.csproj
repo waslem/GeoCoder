@@ -60,7 +60,8 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>rsz_backofficelogomediumGeo%281%29.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CommonLibrary">
@@ -84,6 +85,7 @@
     <Compile Include="AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Encrypt\Crypto.cs" />
     <Compile Include="logic\Address.cs" />
     <Compile Include="logic\AddressExport.cs" />
     <Compile Include="logic\CsvExport.cs" />
@@ -126,6 +128,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="GeoCoder_TemporaryKey.pfx" />
     <None Include="packages.config" />
@@ -155,8 +158,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="rsz_backofficelogomedium.ico" />
-    <Content Include="rsz_backofficelogomediumGeo%281%29.ico" />
+    <None Include="Resources\geocoder.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

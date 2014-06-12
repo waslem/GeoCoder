@@ -84,45 +84,51 @@ namespace GeoCoder.Properties {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("schedulerbbpo@gmail.com")]
         public string EmailUsername {
             get {
                 return ((string)(this["EmailUsername"]));
             }
+            set {
+                this["EmailUsername"] = value;
+            }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Schedule24")]
+        [global::System.Configuration.DefaultSettingValueAttribute("ld7+tv1PNbnpii3IIw+RHQ==")]
         public string EmailPassword {
             get {
                 return ((string)(this["EmailPassword"]));
+            }
+            set {
+                this["EmailPassword"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("smtp.gmail.com")]
-        public string EmailHost {
+        public string SmtpHost {
             get {
-                return ((string)(this["EmailHost"]));
+                return ((string)(this["SmtpHost"]));
             }
             set {
-                this["EmailHost"] = value;
+                this["SmtpHost"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("587")]
-        public int EmailPort {
+        public int SmtpPort {
             get {
-                return ((int)(this["EmailPort"]));
+                return ((int)(this["SmtpPort"]));
             }
             set {
-                this["EmailPort"] = value;
+                this["SmtpPort"] = value;
             }
         }
         
