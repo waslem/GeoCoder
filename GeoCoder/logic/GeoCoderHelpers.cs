@@ -112,16 +112,15 @@ namespace GeoCoder.logic
                 var request = (HttpWebRequest)WebRequest.Create(url);
                 request.Method = "GET";
 
-                // initial test code for HttpWebRequest with baycorp proxy settings
-                // this worked when testing @ balcatta office
-                //var baycorpProxy = new WebProxy();
-                //baycorpProxy.BypassProxyOnLocal = true;
-                //baycorpProxy.Address = new Uri("http://auproxy:8080");
+                // baycorp proxy settings; todo: move these to settings
+                var baycorpProxy = new WebProxy();
+                baycorpProxy.BypassProxyOnLocal = true;
+                baycorpProxy.Address = new Uri("http://auproxy:8080");
 
                 // use the crpyto class and encrypt the password, store both in settings.settings
-                //baycorpProxy.Credentials = new NetworkCredential("bcs\\jamie.vanwalsum", "Schedule27");
+                baycorpProxy.Credentials = new NetworkCredential("jamie.vanwalsum", "Schedule28");
 
-                //request.Proxy = baycorpProxy;
+                request.Proxy = baycorpProxy;
 
                 response = request.GetResponse();
                 var exactResult = 0;

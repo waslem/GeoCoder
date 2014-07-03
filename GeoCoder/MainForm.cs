@@ -49,9 +49,12 @@ namespace GeoCoder
         private void buttonImport_Click(object sender, EventArgs e)
         {
             ResetAddressAndResults();
-            OpenCsv();
-            btnImport.BackColor = Color.Green;
-            btnGeocode.Enabled = true;
+
+            if (OpenCsv() == true)
+            {
+                btnImport.BackColor = Color.Green;
+                btnGeocode.Enabled = true;
+            }
         }
 
         private void ResetAddressAndResults()
@@ -87,6 +90,10 @@ namespace GeoCoder
 
         private void Geocode()
         {
+            // set the step to 1 and the maximum steps to the # of records to geocode
+            progressExport.Step = 1;
+            progressExport.Maximum = _ungeoList.Count;
+
             for (int i = 0; i < _ungeoList.Count; i++)
             {
                 _ungeoList[i] = GeoCoderHelpers.GeoCode(_ungeoList[i]);
@@ -124,23 +131,27 @@ namespace GeoCoder
             }
         }
 
-        private void OpenCsv()
+        private bool OpenCsv()
         {
+            bool status = false;
             ResetAddressAndResults();
 
             openFileLoad.InitialDirectory = Properties.Settings.Default.DefaultOpen;
             openFileLoad.Filter = Properties.Settings.Default.CsvFilter;
-            openFileLoad.FileName = "";
             DialogResult result = openFileLoad.ShowDialog();
 
             if (result == DialogResult.OK)
+            {
                 LoadCsv(openFileLoad.FileName);
+                status = true;
+            }
+
+            return status;
         }
 
         private void ExportResultsBailiff()
         {
             saveFileDialogCsv.InitialDirectory = Properties.Settings.Default.DefaultSave;
-            saveFileDialogCsv.FileName = "";
             saveFileDialogCsv.Filter = Properties.Settings.Default.CsvFilter;
             saveFileDialogCsv.FileName = SetFileName("bailiff");
 
