@@ -86,7 +86,7 @@ namespace GeoCoder.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("jamie.vanwalsum@baycorp.com.au")]
+        [global::System.Configuration.DefaultSettingValueAttribute("jamie.vanwalsum")]
         public string EmailUsername {
             get {
                 return ((string)(this["EmailUsername"]));
@@ -146,7 +146,7 @@ namespace GeoCoder.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("fieldserviceswa@baycorp.com.au")]
+        [global::System.Configuration.DefaultSettingValueAttribute("enquirieswa@baycorp.com.au")]
         public string EmailAddressUngeo {
             get {
                 return ((string)(this["EmailAddressUngeo"]));
@@ -165,6 +165,18 @@ namespace GeoCoder.Properties {
             }
             set {
                 this["EmailAddressResults"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("range_interpolated")]
+        public string dropDownGeocodingAccuracy {
+            get {
+                return ((string)(this["dropDownGeocodingAccuracy"]));
+            }
+            set {
+                this["dropDownGeocodingAccuracy"] = value;
             }
         }
     }

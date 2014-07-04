@@ -21,25 +21,25 @@
       <Value Profile="(Default)">An unexpected error has occured.</Value>
     </Setting>
     <Setting Name="EmailUsername" Type="System.String" Scope="User">
-      <Value Profile="(Default)">schedulerbbpo@gmail.com</Value>
+      <Value Profile="(Default)">jamie.vanwalsum@baycorp.com.au</Value>
     </Setting>
     <Setting Name="EmailPassword" Type="System.String" Scope="User">
       <Value Profile="(Default)">ld7+tv1PNbnpii3IIw+RHQ==</Value>
     </Setting>
     <Setting Name="SmtpHost" Type="System.String" Scope="User">
-      <Value Profile="(Default)">smtp.gmail.com</Value>
+      <Value Profile="(Default)">bcsex0005</Value>
     </Setting>
     <Setting Name="SmtpPort" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">587</Value>
+      <Value Profile="(Default)">25</Value>
     </Setting>
     <Setting Name="ReferenceCutoff" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">20000</Value>
     </Setting>
     <Setting Name="EmailAddressUngeo" Type="System.String" Scope="User">
-      <Value Profile="(Default)">info@backofficebpo.com.au</Value>
+      <Value Profile="(Default)">fieldserviceswa@baycorp.com.au</Value>
     </Setting>
     <Setting Name="EmailAddressResults" Type="System.String" Scope="User">
-      <Value Profile="(Default)">scheduler@backofficebpo.com.au</Value>
+      <Value Profile="(Default)">alex.stokes@baycorp.com.au</Value>
     </Setting>
   </Settings>
 </SettingsFile>

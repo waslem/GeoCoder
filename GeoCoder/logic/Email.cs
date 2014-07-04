@@ -197,7 +197,6 @@ namespace GeoCoder.logic
             client.Port = Properties.Settings.Default.SmtpPort;
             client.Host = Properties.Settings.Default.SmtpHost;
 
-            client.EnableSsl = true;
             client.UseDefaultCredentials = false;
 
             Crypto crypt = new Crypto(Crypto.CryptoTypes.encTypeTripleDES);

@@ -46,6 +46,8 @@ namespace GeoCoder
                 Crypto crypt = new Crypto(CryptoType: Crypto.CryptoTypes.encTypeTripleDES);
                 string pass = crypt.Encrypt(txtBoxSmtpPass.Text);
 
+                Properties.Settings.Default.EmailUsername = txtBoxSmtpUser.Text;
+
                 Properties.Settings.Default.EmailPassword = pass;
                 Properties.Settings.Default.Save();
 
