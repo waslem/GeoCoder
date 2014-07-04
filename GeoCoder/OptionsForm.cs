@@ -25,6 +25,9 @@ namespace GeoCoder
 
             txtBoxSmtpUser.Text = Properties.Settings.Default.EmailUsername;
             txtBoxSmtpPass.Text = Properties.Settings.Default.EmailPassword;
+
+            // just for now until we wire it in to everything
+            dropDownListGeo.SelectedIndex = 1;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

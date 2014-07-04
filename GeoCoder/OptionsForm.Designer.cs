@@ -51,6 +51,8 @@
             this.label9 = new System.Windows.Forms.Label();
             this.txtBoxSmtpUser = new System.Windows.Forms.TextBox();
             this.txtBoxSmtpPass = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.dropDownListGeo = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // lblEmailResults
@@ -90,7 +92,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(48, 336);
+            this.label2.Location = new System.Drawing.Point(48, 417);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(170, 13);
             this.label2.TabIndex = 4;
@@ -98,7 +100,7 @@
             // 
             // txtbxInHouseCutoffReference
             // 
-            this.txtbxInHouseCutoffReference.Location = new System.Drawing.Point(221, 333);
+            this.txtbxInHouseCutoffReference.Location = new System.Drawing.Point(221, 414);
             this.txtbxInHouseCutoffReference.Name = "txtbxInHouseCutoffReference";
             this.txtbxInHouseCutoffReference.Size = new System.Drawing.Size(181, 20);
             this.txtbxInHouseCutoffReference.TabIndex = 5;
@@ -106,7 +108,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(246, 390);
+            this.btnSave.Location = new System.Drawing.Point(243, 460);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 6;
@@ -116,7 +118,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(327, 390);
+            this.btnCancel.Location = new System.Drawing.Point(324, 460);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 7;
@@ -165,7 +167,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(18, 307);
+            this.label5.Location = new System.Drawing.Point(18, 388);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(89, 13);
             this.label5.TabIndex = 12;
@@ -240,11 +242,34 @@
             this.txtBoxSmtpPass.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtBoxSmtpPass.UseSystemPasswordChar = true;
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(103, 281);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(112, 13);
+            this.label10.TabIndex = 21;
+            this.label10.Text = "Geo-coding accuracy:";
+            // 
+            // dropDownListGeo
+            // 
+            this.dropDownListGeo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.dropDownListGeo.FormattingEnabled = true;
+            this.dropDownListGeo.Items.AddRange(new object[] {
+            "RANGE_INTERPOLATED",
+            "ROOFTOP"});
+            this.dropDownListGeo.Location = new System.Drawing.Point(221, 278);
+            this.dropDownListGeo.Name = "dropDownListGeo";
+            this.dropDownListGeo.Size = new System.Drawing.Size(178, 21);
+            this.dropDownListGeo.TabIndex = 22;
+            // 
             // OptionsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(411, 422);
+            this.ClientSize = new System.Drawing.Size(411, 495);
+            this.Controls.Add(this.dropDownListGeo);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.txtBoxSmtpPass);
             this.Controls.Add(this.txtBoxSmtpUser);
             this.Controls.Add(this.label9);
@@ -298,5 +323,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtBoxSmtpUser;
         private System.Windows.Forms.TextBox txtBoxSmtpPass;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ComboBox dropDownListGeo;
     }
 }
