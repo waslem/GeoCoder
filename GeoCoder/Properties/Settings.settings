@@ -41,5 +41,14 @@
     <Setting Name="EmailAddressResults" Type="System.String" Scope="User">
       <Value Profile="(Default)">alex.stokes@baycorp.com.au</Value>
     </Setting>
+    <Setting Name="ProxyAddress" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://auproxy:8080</Value>
+    </Setting>
+    <Setting Name="proxyUsername" Type="System.String" Scope="User">
+      <Value Profile="(Default)">jamie.vanwalsum</Value>
+    </Setting>
+    <Setting Name="proxyPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ld7+tv1PNbkrbZF0Zuh+Vg==</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

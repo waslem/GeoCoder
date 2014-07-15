@@ -53,6 +53,12 @@
             this.txtBoxSmtpPass = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.dropDownListGeo = new System.Windows.Forms.ComboBox();
+            this.lblProxyAddress = new System.Windows.Forms.Label();
+            this.txtBoxProxyAddress = new System.Windows.Forms.TextBox();
+            this.txtBoxProxyUsername = new System.Windows.Forms.TextBox();
+            this.lblProxyUsername = new System.Windows.Forms.Label();
+            this.lblProxyPassword = new System.Windows.Forms.Label();
+            this.txtBoxProxyPassword = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // lblEmailResults
@@ -245,7 +251,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(103, 281);
+            this.label10.Location = new System.Drawing.Point(103, 366);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(112, 13);
             this.label10.TabIndex = 21;
@@ -258,16 +264,71 @@
             this.dropDownListGeo.Items.AddRange(new object[] {
             "RANGE_INTERPOLATED",
             "ROOFTOP"});
-            this.dropDownListGeo.Location = new System.Drawing.Point(221, 278);
+            this.dropDownListGeo.Location = new System.Drawing.Point(221, 363);
             this.dropDownListGeo.Name = "dropDownListGeo";
             this.dropDownListGeo.Size = new System.Drawing.Size(178, 21);
             this.dropDownListGeo.TabIndex = 22;
+            // 
+            // lblProxyAddress
+            // 
+            this.lblProxyAddress.AutoSize = true;
+            this.lblProxyAddress.Location = new System.Drawing.Point(138, 281);
+            this.lblProxyAddress.Name = "lblProxyAddress";
+            this.lblProxyAddress.Size = new System.Drawing.Size(77, 13);
+            this.lblProxyAddress.TabIndex = 23;
+            this.lblProxyAddress.Text = "Proxy Address:";
+            // 
+            // txtBoxProxyAddress
+            // 
+            this.txtBoxProxyAddress.Location = new System.Drawing.Point(220, 278);
+            this.txtBoxProxyAddress.Name = "txtBoxProxyAddress";
+            this.txtBoxProxyAddress.Size = new System.Drawing.Size(179, 20);
+            this.txtBoxProxyAddress.TabIndex = 24;
+            // 
+            // txtBoxProxyUsername
+            // 
+            this.txtBoxProxyUsername.Location = new System.Drawing.Point(221, 304);
+            this.txtBoxProxyUsername.Name = "txtBoxProxyUsername";
+            this.txtBoxProxyUsername.Size = new System.Drawing.Size(178, 20);
+            this.txtBoxProxyUsername.TabIndex = 25;
+            // 
+            // lblProxyUsername
+            // 
+            this.lblProxyUsername.AutoSize = true;
+            this.lblProxyUsername.Location = new System.Drawing.Point(128, 307);
+            this.lblProxyUsername.Name = "lblProxyUsername";
+            this.lblProxyUsername.Size = new System.Drawing.Size(87, 13);
+            this.lblProxyUsername.TabIndex = 26;
+            this.lblProxyUsername.Text = "Proxy Username:";
+            // 
+            // lblProxyPassword
+            // 
+            this.lblProxyPassword.AutoSize = true;
+            this.lblProxyPassword.Location = new System.Drawing.Point(128, 336);
+            this.lblProxyPassword.Name = "lblProxyPassword";
+            this.lblProxyPassword.Size = new System.Drawing.Size(85, 13);
+            this.lblProxyPassword.TabIndex = 27;
+            this.lblProxyPassword.Text = "Proxy Password:";
+            // 
+            // txtBoxProxyPassword
+            // 
+            this.txtBoxProxyPassword.Location = new System.Drawing.Point(221, 330);
+            this.txtBoxProxyPassword.Name = "txtBoxProxyPassword";
+            this.txtBoxProxyPassword.Size = new System.Drawing.Size(178, 20);
+            this.txtBoxProxyPassword.TabIndex = 28;
+            this.txtBoxProxyPassword.UseSystemPasswordChar = true;
             // 
             // OptionsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(411, 495);
+            this.Controls.Add(this.txtBoxProxyPassword);
+            this.Controls.Add(this.lblProxyPassword);
+            this.Controls.Add(this.lblProxyUsername);
+            this.Controls.Add(this.txtBoxProxyUsername);
+            this.Controls.Add(this.txtBoxProxyAddress);
+            this.Controls.Add(this.lblProxyAddress);
             this.Controls.Add(this.dropDownListGeo);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.txtBoxSmtpPass);
@@ -325,5 +386,11 @@
         private System.Windows.Forms.TextBox txtBoxSmtpPass;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox dropDownListGeo;
+        private System.Windows.Forms.Label lblProxyAddress;
+        private System.Windows.Forms.TextBox txtBoxProxyAddress;
+        private System.Windows.Forms.TextBox txtBoxProxyUsername;
+        private System.Windows.Forms.Label lblProxyUsername;
+        private System.Windows.Forms.Label lblProxyPassword;
+        private System.Windows.Forms.TextBox txtBoxProxyPassword;
     }
 }

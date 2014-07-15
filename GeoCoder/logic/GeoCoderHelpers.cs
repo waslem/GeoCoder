@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.XPath;
 using GeoCoder.Properties;
+using GeoCoder.Encrypt;
 
 namespace GeoCoder.logic
 {
@@ -115,10 +116,14 @@ namespace GeoCoder.logic
                 // baycorp proxy settings; todo: move these to settings
                 var baycorpProxy = new WebProxy();
                 baycorpProxy.BypassProxyOnLocal = true;
-                baycorpProxy.Address = new Uri("http://auproxy:8080");
+                baycorpProxy.Address = new Uri(Properties.Settings.Default.ProxyAddress);
+
+                Crypto crypt = new Crypto(Crypto.CryptoTypes.encTypeTripleDES);
+                string pass = crypt.Decrypt(Properties.Settings.Default.proxyPassword);
 
                 // use the crpyto class and encrypt the password, store both in settings.settings
-                baycorpProxy.Credentials = new NetworkCredential("jamie.vanwalsum", "Schedule28");
+                baycorpProxy.Credentials = new NetworkCredential
+                    (Properties.Settings.Default.proxyUsername, pass);
 
                 request.Proxy = baycorpProxy;
 

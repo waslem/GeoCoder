@@ -26,6 +26,10 @@ namespace GeoCoder
             txtBoxSmtpUser.Text = Properties.Settings.Default.EmailUsername;
             txtBoxSmtpPass.Text = Properties.Settings.Default.EmailPassword;
 
+            txtBoxProxyAddress.Text = Properties.Settings.Default.ProxyAddress;
+            txtBoxProxyUsername.Text = Properties.Settings.Default.proxyUsername;
+            txtBoxProxyPassword.Text = Properties.Settings.Default.proxyPassword;
+
             // just for now until we wire it in to everything
             dropDownListGeo.SelectedIndex = 1;
         }
@@ -47,11 +51,16 @@ namespace GeoCoder
                 Properties.Settings.Default.SmtpPort = Int32.Parse(txtbxSmtpPort.Text);
 
                 Crypto crypt = new Crypto(CryptoType: Crypto.CryptoTypes.encTypeTripleDES);
-                string pass = crypt.Encrypt(txtBoxSmtpPass.Text);
+                string emailPass = crypt.Encrypt(txtBoxSmtpPass.Text);
+                string proxyPass = crypt.Encrypt(txtBoxProxyPassword.Text);
 
                 Properties.Settings.Default.EmailUsername = txtBoxSmtpUser.Text;
+                Properties.Settings.Default.EmailPassword = emailPass;
 
-                Properties.Settings.Default.EmailPassword = pass;
+                Properties.Settings.Default.ProxyAddress = txtBoxProxyAddress.Text;
+                Properties.Settings.Default.proxyUsername = txtBoxProxyUsername.Text;
+                Properties.Settings.Default.proxyPassword = proxyPass;
+
                 Properties.Settings.Default.Save();
 
                 Close();

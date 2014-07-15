@@ -167,5 +167,41 @@ namespace GeoCoder.Properties {
                 this["EmailAddressResults"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://auproxy:8080")]
+        public string ProxyAddress {
+            get {
+                return ((string)(this["ProxyAddress"]));
+            }
+            set {
+                this["ProxyAddress"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("jamie.vanwalsum")]
+        public string proxyUsername {
+            get {
+                return ((string)(this["proxyUsername"]));
+            }
+            set {
+                this["proxyUsername"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("ld7+tv1PNbkrbZF0Zuh+Vg==")]
+        public string proxyPassword {
+            get {
+                return ((string)(this["proxyPassword"]));
+            }
+            set {
+                this["proxyPassword"] = value;
+            }
+        }
     }
 }
