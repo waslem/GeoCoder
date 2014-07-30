@@ -74,7 +74,7 @@
             // 
             this.txtbxResultsEmail.Location = new System.Drawing.Point(221, 123);
             this.txtbxResultsEmail.Name = "txtbxResultsEmail";
-            this.txtbxResultsEmail.Size = new System.Drawing.Size(181, 20);
+            this.txtbxResultsEmail.Size = new System.Drawing.Size(178, 20);
             this.txtbxResultsEmail.TabIndex = 1;
             this.txtbxResultsEmail.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -91,7 +91,7 @@
             // 
             this.txtbxUngeoEmail.Location = new System.Drawing.Point(221, 148);
             this.txtbxUngeoEmail.Name = "txtbxUngeoEmail";
-            this.txtbxUngeoEmail.Size = new System.Drawing.Size(181, 20);
+            this.txtbxUngeoEmail.Size = new System.Drawing.Size(178, 20);
             this.txtbxUngeoEmail.TabIndex = 3;
             this.txtbxUngeoEmail.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -201,7 +201,7 @@
             // 
             this.txtbxSmtpHost.Location = new System.Drawing.Point(221, 174);
             this.txtbxSmtpHost.Name = "txtbxSmtpHost";
-            this.txtbxSmtpHost.Size = new System.Drawing.Size(181, 20);
+            this.txtbxSmtpHost.Size = new System.Drawing.Size(178, 20);
             this.txtbxSmtpHost.TabIndex = 15;
             this.txtbxSmtpHost.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -209,7 +209,7 @@
             // 
             this.txtbxSmtpPort.Location = new System.Drawing.Point(221, 200);
             this.txtbxSmtpPort.Name = "txtbxSmtpPort";
-            this.txtbxSmtpPort.Size = new System.Drawing.Size(181, 20);
+            this.txtbxSmtpPort.Size = new System.Drawing.Size(178, 20);
             this.txtbxSmtpPort.TabIndex = 16;
             this.txtbxSmtpPort.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -251,7 +251,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(103, 366);
+            this.label10.Location = new System.Drawing.Point(103, 359);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(112, 13);
             this.label10.TabIndex = 21;
@@ -264,7 +264,7 @@
             this.dropDownListGeo.Items.AddRange(new object[] {
             "RANGE_INTERPOLATED",
             "ROOFTOP"});
-            this.dropDownListGeo.Location = new System.Drawing.Point(221, 363);
+            this.dropDownListGeo.Location = new System.Drawing.Point(221, 356);
             this.dropDownListGeo.Name = "dropDownListGeo";
             this.dropDownListGeo.Size = new System.Drawing.Size(178, 21);
             this.dropDownListGeo.TabIndex = 22;
@@ -284,6 +284,7 @@
             this.txtBoxProxyAddress.Name = "txtBoxProxyAddress";
             this.txtBoxProxyAddress.Size = new System.Drawing.Size(179, 20);
             this.txtBoxProxyAddress.TabIndex = 24;
+            this.txtBoxProxyAddress.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtBoxProxyUsername
             // 
@@ -291,6 +292,7 @@
             this.txtBoxProxyUsername.Name = "txtBoxProxyUsername";
             this.txtBoxProxyUsername.Size = new System.Drawing.Size(178, 20);
             this.txtBoxProxyUsername.TabIndex = 25;
+            this.txtBoxProxyUsername.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblProxyUsername
             // 
@@ -316,6 +318,7 @@
             this.txtBoxProxyPassword.Name = "txtBoxProxyPassword";
             this.txtBoxProxyPassword.Size = new System.Drawing.Size(178, 20);
             this.txtBoxProxyPassword.TabIndex = 28;
+            this.txtBoxProxyPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtBoxProxyPassword.UseSystemPasswordChar = true;
             // 
             // OptionsForm
