@@ -12,11 +12,20 @@ using GeoCoder.Encrypt;
 
 namespace GeoCoder
 {
+    /// <summary>
+    /// The options form, displays the configurable options of the geocoder application
+    /// </summary>
     public partial class OptionsForm : Form
     {
+        /// <summary>
+        /// the default constructor for the options form, initialises the settings from the
+        /// programs settings resources.
+        /// </summary>
         public OptionsForm()
         {
             InitializeComponent();
+
+            // set the GUI text fields to the value in the software settings
             txtbxResultsEmail.Text = Properties.Settings.Default.EmailAddressResults;
             txtbxUngeoEmail.Text = Properties.Settings.Default.EmailAddressUngeo;
             txtbxInHouseCutoffReference.Text = Properties.Settings.Default.ReferenceCutoff.ToString();
@@ -30,15 +39,28 @@ namespace GeoCoder
             txtBoxProxyUsername.Text = Properties.Settings.Default.proxyUsername;
             txtBoxProxyPassword.Text = Properties.Settings.Default.proxyPassword;
 
-            // just for now until we wire it in to everything
+          
             dropDownListGeo.SelectedIndex = 1;
         }
 
+        /// <summary>
+        /// This method handles the cancel button click event
+        /// This method closes the OptionsForm
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCancel_Click(object sender, EventArgs e)
         {
             Close();
         }
 
+        /// <summary>
+        /// This method handles the save button click event
+        /// The method attempts to save all settings that were changed in the options form by the user
+        /// Some validation is performed on integer values to ensure data types are correct
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSave_Click(object sender, EventArgs e)
         {
             try 
@@ -65,11 +87,13 @@ namespace GeoCoder
 
                 Close();
 	        }
+            // error checking for fields which are integers
 	        catch (Exception ex)
 	        {
                 int res;
 
-                // not sure if this is the most efficient way to do this, but is working for now...
+                // not sure if this is the most efficient way to do this
+                // TODO: review and revise this in the future
                 if (Int32.TryParse(txtbxInHouseCutoffReference.Text, out res))
                 {
                     MessageBox.Show("Please enter a valid SMTP Port");
@@ -90,12 +114,26 @@ namespace GeoCoder
 	        }
         }
 
+        /// <summary>
+        /// This method handles the set default open location click event
+        /// The folderBrowserDialogopen dialog box is shown and if the DialogResult is OK we save the
+        /// selected path as the default open path for the application
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SetDefaultOpenLocation_Click(object sender, EventArgs e)
         {
             if (folderBrowserDialogOpen.ShowDialog() == DialogResult.OK)
                 Properties.Settings.Default.DefaultOpen = folderBrowserDialogOpen.SelectedPath;
         }
 
+        /// <summary>
+        /// This method handles the set default save location click event
+        /// The folderBrowserDialogSave dialog box is shown and if the DialogResult is OK we save the
+        /// selected path as the default save path for the application
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SetDefaultSaveLocation_Click(object sender, EventArgs e)
         {
             if (folderBrowserDialogSave.ShowDialog() == DialogResult.OK)

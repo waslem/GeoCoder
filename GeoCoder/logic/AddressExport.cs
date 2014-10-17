@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace GeoCoder.logic
 {
+    /// <summary>
+    /// This class used to export orders to the required file format
+    /// </summary>
     public class AddressExport
     {
         public string OrderNum { get; set; }

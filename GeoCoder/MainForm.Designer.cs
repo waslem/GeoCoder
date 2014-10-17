@@ -362,7 +362,7 @@
             this.MainMenuStrip = this.menuStripMain;
             this.Name = "MainForm";
             this.Text = "CSV Geocoder v1.0.0.8";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.menuStripMain.ResumeLayout(false);
             this.menuStripMain.PerformLayout();
             this.panelButtons.ResumeLayout(false);

@@ -9,17 +9,35 @@ using System.Threading.Tasks;
 using System.Xml.XPath;
 using GeoCoder.Properties;
 using GeoCoder.Encrypt;
+using ComLib.Logging;
 
 namespace GeoCoder.logic
 {
+    /// <summary>
+    /// the geocoderhelpers static class contains helper methods which are used by various methods in the
+    /// software, these methods are:
+    ///     -   LoadCsv 
+    ///     -   SortResults
+    ///     -   CalculateResults
+    ///     -   GeoCode
+    ///     -   ConvertList
+    /// </summary>
     public static class GeoCoderHelpers
     {
+        /// <summary>
+        /// The LoadCsv method is used to attempt to load a csv file from a filename string location
+        /// and store the loaded contents into a list of address object
+        /// </summary>
+        /// <param name="fileName">location of the file name to be loaded</param>
+        /// <param name="_ungeoList">list of address objects to store the addresses in</param>
+        /// <returns>a list of address objects that have been loaded</returns>
         public static List<Address> LoadCsv(string fileName, List<Address> _ungeoList)
         {
+            //I use the CsvDoc class which is part of the CommonLibrary.NET https://commonlibrarynet.codeplex.com/
+            // this common library contains a collection of very resusable code and components in c# 4.0
             CsvDoc csv = Csv.Load(fileName, true);
 
-            // hack way to do this now, will think of better way later.
-            // TODO: fix the loading the csv to be more robust, need to error check this
+            // TODO: fix the loading the csv to be more robust, need to add error checking this process
             foreach (OrderedDictionary t in csv.Data)
             {
                 // fix if the address is blank or just a space
@@ -36,6 +54,15 @@ namespace GeoCoder.logic
             return _ungeoList;
         }
 
+        /// <summary>
+        /// This method sorts the contents of the ungeoList to filter in the following order:
+        ///     -   Y coordinate
+        ///     -   X coordinate
+        ///     -   orderNumber
+        /// This method also removes all null addresses from the ungeo list
+        /// </summary>
+        /// <param name="_ungeoList">the address list to sort</param>
+        /// <returns>the list of sorted addresses</returns>
         public static List<Address> SortResults(List<Address> _ungeoList)
         {
             List<Address> listFixed = new List<Address>();
@@ -57,6 +84,11 @@ namespace GeoCoder.logic
             return listFixed;
         }
 
+        /// <summary>
+        ///  This method calculates the results of the geocoder based on the contents of the ungeoList
+        /// </summary>
+        /// <param name="_ungeoList">the list containing the address orders</param>
+        /// <returns>the ResultStats object containing the results</returns>
         public static ResultStats CalculateResults(List<Address> _ungeoList)
         {
             ResultStats stats = new ResultStats();
@@ -92,6 +124,7 @@ namespace GeoCoder.logic
                 }
             }
 
+            // set the stats for each stat based on the result
             stats.GeocodedCount = geoCount;
             stats.UngeocodedCount = stats.RecordCount - geoCount;
             stats.BailiffGeocodedCount = bailiffGeoCount;
@@ -100,6 +133,13 @@ namespace GeoCoder.logic
             return stats;
         }
 
+        /// <summary>
+        /// The main geocode method which attempts to geocode an address using the google maps api.
+        /// the method generates a HttpWebRequest to the google map api including passes the address string,
+        /// then handles navigating the xml response that is generated
+        /// </summary>
+        /// <param name="record">the Address object to geocode</param>
+        /// <returns>the updated address record, with updated x and y coordinates if the geocoder was successful</returns>
         public static Address GeoCode(Address record)
         {
             var newXcoords = "0.0";
@@ -175,7 +215,7 @@ namespace GeoCoder.logic
             }
             catch (Exception)
             {
-                //TODO: add exception logic here
+                
             }
             finally
             {
@@ -190,6 +230,32 @@ namespace GeoCoder.logic
             return record;
         }
 
+        /// <summary>
+        /// very simple logger, just logs the message to the geocoder logger
+        /// </summary>
+        /// <param name="level">the level of logging, provided by the LogLevel enum</param>
+        /// <param name="logMessage">the string message to log</param>
+        public static void LogEvent(LogLevel level, string logMessage)
+        {
+            Logger.Get("geocoder_logger").Log(level, logMessage);
+        }
+
+        /// <summary>
+        /// This method creates the logger which is used to log exceptions in the program
+        /// </summary>
+        public static void CreateLogger()
+        {
+            Logger.Add(new LogMulti("geocoder_logger", new LogFile("geocoder_log", "log.txt")));
+        }
+
+        /// <summary>
+        /// This static method convers the ungeoList into an ordered list, ensuring the orderNumber of each record
+        /// is between the start and finish references.
+        /// </summary>
+        /// <param name="_ungeoList">the list to convert</param>
+        /// <param name="startRef">the starting reference number</param>
+        /// <param name="finishRef">the ending reference number</param>
+        /// <returns>the sorted list</returns>
         public static List<AddressExport> ConvertList(List<Address> _ungeoList, int startRef, int finishRef)
         {
             List<AddressExport> list = new List<AddressExport>();
@@ -213,5 +279,16 @@ namespace GeoCoder.logic
 
             return list;
         }
+
+        /// <summary>
+        /// This method sets the filename of the ungeocoded results
+        /// </summary>
+        /// <param name="exportString">the unique string to export</param>
+        /// <returns></returns>
+        public static string SetUngeoFileNameWithTodaysDate(string exportString)
+        {
+            return "ungeoResults-" + exportString + "-" + DateTime.Today.ToString("ddMMyyyy");
+        }
+
     }
 }

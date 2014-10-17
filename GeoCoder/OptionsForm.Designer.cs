@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OptionsForm));
             this.lblEmailResults = new System.Windows.Forms.Label();
             this.txtbxResultsEmail = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -355,6 +356,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtbxResultsEmail);
             this.Controls.Add(this.lblEmailResults);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "OptionsForm";
             this.Text = "Options...";
             this.ResumeLayout(false);

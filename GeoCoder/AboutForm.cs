@@ -10,8 +10,14 @@ using System.Windows.Forms;
 
 namespace GeoCoder
 {
+    /// <summary>
+    /// the about form
+    /// </summary>
     public partial class AboutForm : Form
     {
+        /// <summary>
+        /// default constructor for the about form.
+        /// </summary>
         public AboutForm()
         {
             InitializeComponent();
@@ -22,6 +28,11 @@ namespace GeoCoder
 
         }
 
+        /// <summary>
+        /// the close button click event for the about form, closes the application
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnClose_Click(object sender, EventArgs e)
         {
             Close();
